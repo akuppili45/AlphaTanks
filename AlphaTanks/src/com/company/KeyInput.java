@@ -1,5 +1,6 @@
 package com.company;
 
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -8,14 +9,33 @@ import java.awt.event.KeyEvent;
  */
 public class KeyInput extends KeyAdapter
 {
-    PlayerTank p;
-    public KeyInput(PlayerTank p){
-        this.p = p;
+    Handler handler;
+    public KeyInput(Handler handler){
+        this.handler = handler;
     }
     public void keyPressed(KeyEvent e){
-        p.keyPressed(e);
+        int key = e.getKeyCode();
+        for(int i = 0; i<handler.object.size();i++){
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getID() == ObjectId.PlayerTank){ //Checks if the id is a player
+                if(key == KeyEvent.VK_D)
+                    tempObject.setVelX(5);
+                if(key== KeyEvent.VK_A)
+                    tempObject.setVelX(-5);
+
+            }
+        }
     }
     public void keyReleased(KeyEvent e){
-        p.keyReleased(e);
+        int key = e.getKeyCode();
+        for(int i = 0; i<handler.object.size();i++){
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getID() == ObjectId.PlayerTank){
+                if(key == KeyEvent.VK_D)
+                    tempObject.setVelX(0);
+                if(key== KeyEvent.VK_A)
+                    tempObject.setVelX(0);
+            }
+        }
     }
 }
