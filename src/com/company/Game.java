@@ -12,7 +12,6 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-
     //Objects
     Handler handler;
     public synchronized void start(){
@@ -57,7 +56,7 @@ public class Game extends Canvas implements Runnable
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                //System.out.println("FPS: " + frames + " TICKS: " + updates);
+                System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
             }
