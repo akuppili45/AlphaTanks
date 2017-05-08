@@ -26,7 +26,8 @@ public class Game extends Canvas implements Runnable
         HEIGHT = getHeight();//Canvas height
         handler = new Handler();
 
-        handler.addObject(new PlayerTank(100, 500, ObjectId.PlayerTank, handler));
+        handler.addObject(new PlayerTank(100, 468, ObjectId.PlayerTank, handler));
+        handler.addObject(new Platform(0, 500, ObjectId.Platform, this));
 
         this.addKeyListener(new KeyInput(handler));
 

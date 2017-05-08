@@ -8,25 +8,19 @@ import java.util.Stack;
 /**
  * Created by akupp_000 on 5/3/2017.
  */
-public class PlayerTank extends GameObject
+public class PlayerTank extends Tank
 {
-    private float width = 64, height = 32;
-    Handler handler;
     public PlayerTank(float x, float y, ObjectId id, Handler handler){
-        super(x,y,id);
-        this.handler = handler;
+        super(x,y,id, handler);
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
-        x+=velX;
+        super.tick(object);
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect((int) x, (int) y, (int)width, (int)height);
-
-
+        super.render(g);
     }
 
 
