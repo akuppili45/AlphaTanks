@@ -16,6 +16,12 @@ public class Gun extends GameObject
         super(x, y, id);
         this.bullets = new Stack<Bullet>();
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
     @Override
     public void tick(LinkedList<GameObject> object) {
         //x += velX;
@@ -26,7 +32,8 @@ public class Gun extends GameObject
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.rotate(Math.toRadians(45));
-        g2D.fillRect(200,100,35,46);
+        g2D.fillRect((int) x,(int)y,20,70);
+        //System.out.println(x + "and"+y);
     }
 
 

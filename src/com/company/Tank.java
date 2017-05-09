@@ -14,12 +14,21 @@ public class Tank extends GameObject
     public Tank(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
         h = handler;
-        gun = new Gun(x+40,y,ObjectId.Gun);
+        //gun = new Gun(400,180,ObjectId.Gun);
+        gun = new Gun(x+300,y-288,ObjectId.Gun);
     }
 
     @Override
     public void tick(LinkedList<GameObject> object) {
+        gun.tick(object);
         x+=velX;
+        //System.out.println(x);
+        //gun.tick(object);
+    }
+
+    @Override
+    public String toString() {
+        return "Tank";
     }
 
     @Override

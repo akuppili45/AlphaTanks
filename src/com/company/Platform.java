@@ -21,9 +21,13 @@ public class Platform extends GameObject {
     }
 
     @Override
+    public String toString() {
+        return "Platform";
+    }
+
+    @Override
     public void render(Graphics g) {
         g.setColor(Color.BLACK);
-        //System.out.print("shdi");
         g.fillRect((int)x, (int)y, game.getWidth(),game.getHeight() - (int)getY() );
     }
 }

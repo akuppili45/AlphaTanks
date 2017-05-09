@@ -66,5 +66,6 @@ public abstract class GameObject
 
         return falling;
     }
+    public abstract String toString();
 
 }
