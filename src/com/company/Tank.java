@@ -15,12 +15,9 @@ public class Tank extends GameObject
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
-        gun = new Gun(x+300,y-288,ObjectId.Gun, 45);
+        gun = new Gun(x+310,y-288,ObjectId.Gun, 45);
         h.addObject(this);
         h.addObject(gun);
-
-
-
     }
 
     @Override
@@ -41,6 +38,8 @@ public class Tank extends GameObject
     public void render(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillRect((int) x, (int) y, (int)width, (int)height);
+        //System.out.println("Gun Pos: " + gun.getX() + "," + gun.getY());
+        //System.out.println("Tank Pos: " + this.getX() + "," + this.getY());
 
         gun.render(g);
 
