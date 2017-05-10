@@ -15,11 +15,17 @@ public class Tank extends GameObject
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
-        gun = new Gun(x+300,y-288,ObjectId.Gun);
+        gun = new Gun(x+300,y-288,ObjectId.Gun, 45);
+        h.addObject(this);
+        h.addObject(gun);
+
+
+
     }
 
     @Override
     public void tick(LinkedList<GameObject> object) {
+
         gun.tick(object);
         x+=velX;
         //System.out.println(x);
@@ -33,9 +39,12 @@ public class Tank extends GameObject
 
     @Override
     public void render(Graphics g) {
-
         g.setColor(Color.BLUE);
         g.fillRect((int) x, (int) y, (int)width, (int)height);
+
         gun.render(g);
+
+
     }
+
 }

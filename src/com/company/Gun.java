@@ -12,9 +12,11 @@ public class Gun extends GameObject
     Stack<Bullet> bullets;
     public static final float GUN_WIDTH = 15;
     public static final float GUN_HEIGHT = 60;
-    public Gun(float x, float y, ObjectId id) {
+    private float angle;
+    public Gun(float x, float y, ObjectId id, float gunAngle) {
         super(x, y, id);
         this.bullets = new Stack<Bullet>();
+        angle = gunAngle;
     }
 
     @Override
@@ -24,16 +26,26 @@ public class Gun extends GameObject
 
     @Override
     public void tick(LinkedList<GameObject> object) {
-        //x += velX;
+        x += velX;
         //y += velY;
     }
 
     @Override
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        g2D.rotate(Math.toRadians(45));
+        g2D.rotate(Math.toRadians(angle));
         g2D.fillRect((int) x,(int)y,20,70);
         //System.out.println(x + "and"+y);
+    }
+
+    public void setAngle(float angle) {
+        this.angle = angle;
+        System.out.println(angle);
+    }
+
+    public float getAngle(){
+        return angle;
+
     }
 
 

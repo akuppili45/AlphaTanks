@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable
 
         handler.addObject(new Platform(0, 500, ObjectId.Platform, this));
         handler.addObject(new PlayerTank(100, 468, ObjectId.PlayerTank, handler));
+       // handler.addObject(new PlayerTank(400, 468-288, ObjectId.PlayerTank, handler));
         //for(GameObject a : handler.object)
               //  System.out.println(a);
         //handler.addObject(new Gun(40,50,ObjectId.Gun));
