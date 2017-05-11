@@ -12,7 +12,7 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-    String gitTest = "Git test";
+    String hello = "Git test";
     //Objects
     Handler handler;
     public synchronized void start(){
