@@ -27,24 +27,34 @@ public class Gun extends GameObject
     @Override
     public void tick(LinkedList<GameObject> object) {
         x += velX;
+        y+=velY;
+        //setAngle(angle);
         //y += velY;
+
     }
 
     @Override
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.rotate(Math.toRadians(angle));
+        //x and y need to change in here. don't call tick??
+        //g2D.setColor(Color.WHITE);
+        //g2D.drawOval((int) x,(int)y,50,60);
         g2D.fillRect((int) x,(int)y,20,70);
-        //System.out.println(x + "and"+y);
+
     }
 
     public void setAngle(float angle) {
         this.angle = angle;
-        System.out.println(angle);
+        //System.out.println("new x: " + x);
+
     }
 
     public float getAngle(){
         return angle;
+
+    }
+    public void rotateGun(Gun gun){
 
     }
 
