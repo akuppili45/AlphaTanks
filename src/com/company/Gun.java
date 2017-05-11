@@ -1,6 +1,7 @@
 package com.company;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -35,12 +36,18 @@ public class Gun extends GameObject
 
     @Override
     public void render(Graphics g) {
+        AffineTransform at = AffineTransform.getTranslateInstance(0,0);
+        at.rotate(Math.toRadians(45));
         Graphics2D g2D = (Graphics2D) g;
-        g2D.rotate(Math.toRadians(angle));
+       // g2D.setTransform(at);
+        g2D.transform(at);
+        g2D.fillRect((int) x,(int)y,20,70);
+       // g2D.rotate(Math.toRadians(angle));
+
         //x and y need to change in here. don't call tick??
         //g2D.setColor(Color.WHITE);
         //g2D.drawOval((int) x,(int)y,50,60);
-        g2D.fillRect((int) x,(int)y,20,70);
+        //g2D.fillRect((int) x,(int)y,20,70);
 
     }
 
