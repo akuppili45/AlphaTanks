@@ -12,7 +12,6 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-    String hello = "Git test";
     //Objects
     Handler handler;
     public synchronized void start(){
@@ -35,6 +34,7 @@ public class Game extends Canvas implements Runnable
               //  System.out.println(a);
         //handler.addObject(new Gun(40,50,ObjectId.Gun));
         this.addKeyListener(new KeyInput(handler));
+        this.addMouseListener(new MouseInput());
 
     }
     @Override
