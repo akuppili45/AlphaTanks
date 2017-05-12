@@ -14,7 +14,6 @@ public class Gun extends GameObject
     public static final float GUN_WIDTH = 15;
     public static final float GUN_HEIGHT = 60;
     private float angle;
-    int things;
     public Gun(float x, float y, ObjectId id, float gunAngle) {
         super(x, y, id);
         this.bullets = new Stack<Bullet>();
