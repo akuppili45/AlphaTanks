@@ -11,6 +11,7 @@ import java.util.Stack;
 public class Gun extends GameObject
 {
     Stack<Bullet> bullets;
+    int change;
     public static final float GUN_WIDTH = 15;
     public static final float GUN_HEIGHT = 60;
     private float angle;
@@ -37,9 +38,10 @@ public class Gun extends GameObject
     @Override
     public void render(Graphics g) {
         AffineTransform at = AffineTransform.getTranslateInstance(0,0);
-        at.rotate(Math.toRadians(45));
+
         Graphics2D g2D = (Graphics2D) g;
        // g2D.setTransform(at);
+        at.rotate(Math.toRadians(45),440,212);
         g2D.transform(at);
         g2D.fillRect((int) x,(int)y,20,70);
        // g2D.rotate(Math.toRadians(angle));
