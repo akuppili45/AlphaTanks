@@ -1,6 +1,5 @@
 package com.company;
 
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -10,6 +9,7 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter
 {
     Handler handler;
+    float speed = 3.33f;
     public KeyInput(Handler handler){
         this.handler = handler;
     }
@@ -26,12 +26,12 @@ public class KeyInput extends KeyAdapter
             }
             if(tempObject.getID() == ObjectId.Gun){
                 if(key == KeyEvent.VK_D){
-                    tempObject.setVelX(2.35f);
-                    tempObject.setVelY(-2.35f);
+                    tempObject.setVelX(speed);
+                    tempObject.setVelY(-speed);
                 }
                 if(key== KeyEvent.VK_A){
-                    tempObject.setVelX(-2.35f);
-                    tempObject.setVelY(2.35f);
+                    tempObject.setVelX(-speed);
+                    tempObject.setVelY(speed);
                 }
                 if(key == KeyEvent.VK_LEFT) {
                     Gun gun = (Gun) tempObject;
@@ -49,6 +49,7 @@ public class KeyInput extends KeyAdapter
             }
         }
     }
+
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
         for(int i = 0; i<handler.object.size();i++){

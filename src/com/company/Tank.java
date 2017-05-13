@@ -15,7 +15,7 @@ public class Tank extends GameObject
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
-        gun = new Gun(x+310,y-288,ObjectId.Gun, 45);//x=120, y=468
+        gun = new Gun(x+30,y,ObjectId.Gun, 45);//speed=120, y=468
         h.addObject(this);
         h.addObject(gun);
     }
@@ -25,7 +25,7 @@ public class Tank extends GameObject
 
         gun.tick(object);
         x+=velX;
-        //System.out.println(x);
+        //System.out.println(speed);
         //gun.tick(object);
     }
 
