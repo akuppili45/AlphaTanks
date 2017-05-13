@@ -1,7 +1,6 @@
 package com.company;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -11,8 +10,6 @@ import java.util.Stack;
 public class Gun extends GameObject
 {
     Stack<Bullet> bullets;
-    public static final float GUN_WIDTH = 20;
-    public static final float GUN_HEIGHT = 70;
     private float angle;
     public Gun(float x, float y, ObjectId id, float gunAngle) {
         super(x, y, id);
@@ -27,53 +24,27 @@ public class Gun extends GameObject
 
     @Override
     public void tick(LinkedList<GameObject> object) {
-        x += velX;
-        //y+= velY;
-        //setAngle(angle);
-        //y += velY;
-
+       x += velX;
     }
     @Override
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        g2D.setStroke(new BasicStroke(20));
-        g2D.drawLine((int)x, (int)y, (int)(x + 5), (int)y-20);
-    }
-
-    public void setAngle(float angle) {
-        this.angle = angle;
-        //System.out.println("new speed: " + speed);
+        g2D.setStroke(new BasicStroke(10));
+        g2D.drawLine((int)x, (int)y,(int)((x) + getRadius() * Math.cos(Math.toRadians(angle))), (int)(y- getRadius()*Math.sin(Math.toRadians(angle))));
 
     }
-
+    public float getRadius(){
+        float dx = (int)(x+5) - x;
+        float dy = (int)(y-20) - y;
+        return (float)Math.sqrt(dx*dx + dy*dy);
+    }
     public float getAngle(){
         return angle;
 
     }
-    public void rotateGun(Gun gun){
-
+    public void setAngle(float angle) {
+        this.angle = angle;
     }
-
- /*
-    @Override
-    public void render(Graphics g) {
-        //speed' and y' should be on the center, use rotate and translate formula to derive an equation to get these points.
-        //Just use a line???
-
-        Graphics2D g2D = (Graphics2D) g;
-        AffineTransform at = new AffineTransform();
-        at.rotate(Math.toRadians(45));
-        //g2D.setTransform(at);
-        g2D.fillRect((int) speed,(int)y,(int)GUN_WIDTH,(int)GUN_HEIGHT);
-        g2D.drawOval(380,180,100,100);
-       // g2D.rotate(Math.toRadians(angle));
-
-        //speed and y need to change in here. don't call tick??
-        //g2D.setColor(Color.WHITE);
-        //g2D.drawOval((int) speed,(int)y,50,60);
-        //g2D.fillRect((int) speed,(int)y,20,70);
-
-    }*/
 
 
 }

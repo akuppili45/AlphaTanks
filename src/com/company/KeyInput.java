@@ -34,16 +34,13 @@ public class KeyInput extends KeyAdapter
                     tempObject.setVelY(speed);
                 }
                 if(key == KeyEvent.VK_LEFT) {
-                    Gun gun = (Gun) tempObject;
-                    //gun.setX(gun.getX() - 40);
-                    //gun.setY(gun.getY() + 50);
-                    //gun.setAngle(gun.getAngle() - .01f);
+                    Gun gun = (Gun)tempObject;
+                    gun.setAngle(gun.getAngle()+10);
                 }
                 if(key == KeyEvent.VK_RIGHT) {
-                    Gun gun = (Gun) tempObject;
-                    //gun.setX(gun.getX() + 40);
-                    //gun.setY(gun.getY() - 50);
-                    //gun.setAngle(gun.getAngle() +.01f);
+
+                    Gun gun = (Gun)tempObject;
+                    gun.setAngle(gun.getAngle()-10);
                 }
 
             }
@@ -70,16 +67,12 @@ public class KeyInput extends KeyAdapter
                     tempObject.setVelY(0);
                 }
                 if(key == KeyEvent.VK_LEFT) {
-                    Gun gun = (Gun) tempObject;
-                    //gun.setX(gun.getX() - 40);
-                    //gun.setY(gun.getY() + 50);
-                    //gun.setAngle(gun.getAngle() - .01f);
+                    tempObject.setVelX(0);
+                    tempObject.setVelY(0);
                 }
                 if(key == KeyEvent.VK_RIGHT) {
-                    Gun gun = (Gun) tempObject;
-                    //gun.setX(gun.getX() + 40);
-                    //gun.setY(gun.getY() - 50);
-                    //gun.setAngle(gun.getAngle() +.01f);
+                    tempObject.setVelX(0);
+                    tempObject.setVelY(0);
                 }
 
             }
