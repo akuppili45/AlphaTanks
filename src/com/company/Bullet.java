@@ -21,7 +21,7 @@ public class Bullet extends GameObject {
 		g.fillRect((int) x, (int) y, 16, 16);
 	}
 	
-	public Rectange getBounds() {
+	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, 16, 16);
 	}
 
