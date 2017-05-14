@@ -25,7 +25,6 @@ public class Tank extends GameObject
 
         gun.tick(object);
         x+=velX;
-        //System.out.println(speed);
         //gun.tick(object);
     }
 
