@@ -48,7 +48,9 @@ public class KeyInput extends KeyAdapter
                 }
                 if(key == KeyEvent.VK_SPACE)
                 {
-                    handler.addObject(new Bullet(tempObject.getX(), tempObject.getY(),ObjectId.Bullet,10, (Gun) tempObject));
+                    Gun gun = (Gun)tempObject;
+                    handler.addObject(new Bullet(((float)((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))),(float)
+                            (gun.y- gun.getRadius()*Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float)(20 * Math.cos(Math.toRadians(gun.getAngle()))), gun));
                 }
 
             }
