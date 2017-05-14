@@ -22,6 +22,10 @@ public class KeyInput extends KeyAdapter
                     tempObject.setVelX(5);
                 if(key== KeyEvent.VK_A)
                     tempObject.setVelX(-5);
+                if(key == KeyEvent.VK_SPACE)
+                {
+                	handler.addObject(new Bullet(tempObject.getX(), tempObject.getY(), ObjectId.Bullet, tempObject.getFacing() * 10));
+                }
 
             }
             if(tempObject.getID() == ObjectId.Gun){

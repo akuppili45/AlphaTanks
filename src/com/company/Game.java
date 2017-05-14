@@ -12,7 +12,6 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-    boolean erikdonttouch;
     //Objects
     Handler handler;
     public synchronized void start(){
