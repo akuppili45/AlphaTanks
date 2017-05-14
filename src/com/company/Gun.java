@@ -19,7 +19,7 @@ public class Gun extends GameObject
 
     @Override
     public String toString() {
-        return null;
+        return "Gun";
     }
 
     @Override
