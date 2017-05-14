@@ -8,16 +8,18 @@ import java.util.LinkedList;
  * Created by akupp_000 on 5/8/2017.
  */
 public class Bullet extends GameObject {
-    float gravity = 0.1f;
-	public Bullet(float x, float y, ObjectId id, int velX) {
+    float gravity = 10;
+    private Gun gun;
+	public Bullet(float x, float y, ObjectId id, int velX, Gun gun) {
 		super(x, y, id);
 		this.velX = velX;
+        this.gun = gun;
 	}
 
 	public void tick(LinkedList<GameObject> object) {
-		x += 2;
-        y -= velY;
-        velY -= gravity;
+		x += velX * Math.cos(Math.toRadians(gun.getAngle()));
+        y -= velX * Math.sin(Math.toRadians(gun.getAngle()));
+
 	}
 
 	public void render(Graphics g) {
