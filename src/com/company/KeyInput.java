@@ -22,10 +22,7 @@ public class KeyInput extends KeyAdapter
                     tempObject.setVelX(5);
                 if(key== KeyEvent.VK_A)
                     tempObject.setVelX(-5);
-                if(key == KeyEvent.VK_SPACE)
-                {
-                	handler.addObject(new Bullet(tempObject.getX(), tempObject.getY(), ObjectId.Bullet, tempObject.getFacing() * 10));
-                }
+
 
             }
             if(tempObject.getID() == ObjectId.Gun){
@@ -45,6 +42,13 @@ public class KeyInput extends KeyAdapter
 
                     Gun gun = (Gun)tempObject;
                     gun.setAngle(gun.getAngle()-10);
+                }
+                if(key == KeyEvent.VK_SPACE)
+                {
+                    Gun gun = (Gun)tempObject;
+                    Bullet bullet = new Bullet((int)((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle()))), (int)(gun.y- gun.getRadius()*Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, tempObject.getFacing() * 10);
+                    handler.addObject(bullet);
+                    bullet.setVelY(4.4f);
                 }
 
             }

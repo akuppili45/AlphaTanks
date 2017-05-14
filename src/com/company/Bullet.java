@@ -8,13 +8,16 @@ import java.util.LinkedList;
  * Created by akupp_000 on 5/8/2017.
  */
 public class Bullet extends GameObject {
+    float gravity = 0.1f;
 	public Bullet(float x, float y, ObjectId id, int velX) {
 		super(x, y, id);
 		this.velX = velX;
 	}
 
 	public void tick(LinkedList<GameObject> object) {
-		x += velX;
+		x += 2;
+        y -= velY;
+        velY -= gravity;
 	}
 
 	public void render(Graphics g) {
