@@ -45,10 +45,4 @@ public class Gun extends GameObject
     public void setAngle(float angle) {
         this.angle = angle;
     }
-    
-    public void fire() {
-        Bullet bullet = new Bullet(x, y);
-        bullets.add(bullet);
-        bullet.launch(direction);
-    }
 }
