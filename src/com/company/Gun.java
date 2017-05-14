@@ -29,7 +29,7 @@ public class Gun extends GameObject
     @Override
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        g2D.setStroke(new BasicStroke(20));
+        g2D.setStroke(new BasicStroke(0));
         g2D.drawLine((int)x, (int)y,(int)((x) + getRadius() * Math.cos(Math.toRadians(angle))), (int)(y- getRadius()*Math.sin(Math.toRadians(angle))));
 
     }
