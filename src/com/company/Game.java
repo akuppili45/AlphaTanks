@@ -26,10 +26,10 @@ public class Game extends Canvas implements Runnable
         HEIGHT = getHeight();//Canvas height
         handler = new Handler();
 
-
+        PlayerTank pT = new PlayerTank(120, 468, ObjectId.PlayerTank, handler);
         handler.addObject(new Platform(0, 500, ObjectId.Platform, this));
-        handler.addObject(new PlayerTank(120, 468, ObjectId.PlayerTank, handler));
-        handler.addObject(new EnemyTank(600,468,ObjectId.EnemyTank, handler));
+        handler.addObject(pT);
+        handler.addObject(new EnemyTank(1100,468,ObjectId.EnemyTank, handler, pT));
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(new MouseInput());
 
@@ -86,6 +86,7 @@ public class Game extends Canvas implements Runnable
     }
 
     public static void main(String[] args) {
-        new Window(800,600,"Alpha Tanks", new Game());
+        //new Window(800,600,"Alpha Tanks", new Game());
+        new Window(1800,1500,"Alpha Tanks", new Game());
     }
 }

@@ -43,5 +43,8 @@ public class Tank extends GameObject
     public boolean isPlayer(){
         return this.getID() == ObjectId.PlayerTank;
     }
+    public Gun getGun(){
+        return gun;
+    }
 
 }
