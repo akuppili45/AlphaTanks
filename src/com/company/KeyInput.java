@@ -26,29 +26,43 @@ public class KeyInput extends KeyAdapter
 
             }
             if(tempObject.getID() == ObjectId.Gun){
+                //initialize default gun
                 if(key == KeyEvent.VK_D){
-                    tempObject.setVelX(speed);
-                    tempObject.setVelY(-speed);
+                    Gun gun = (Gun)tempObject;
+                    if(gun.isPlayerTank()) {
+                        gun.setVelX(speed);
+                        gun.setVelY(-speed);
+                    }
                 }
                 if(key== KeyEvent.VK_A){
-                    tempObject.setVelX(-speed);
-                    tempObject.setVelY(speed);
-                }
-                if(key == KeyEvent.VK_LEFT) {
                     Gun gun = (Gun)tempObject;
-                    gun.setAngle(gun.getAngle()+10);
+                    if(gun.isPlayerTank()){
+                        gun.setVelX(-speed);
+                        gun.setVelY(speed);
+                    }
+
+                }
+
+                if(key == KeyEvent.VK_LEFT) {
+
+                    Gun gun = (Gun) tempObject;
+                    if(gun.isPlayerTank())
+                        gun.setAngle(gun.getAngle() + 10);
+
                 }
                 if(key == KeyEvent.VK_RIGHT) {
 
                     Gun gun = (Gun)tempObject;
-                    gun.setAngle(gun.getAngle()-10);
+                    if(gun.isPlayerTank())
+                        gun.setAngle(gun.getAngle()-10);
                 }
                 if(key == KeyEvent.VK_SPACE)
                 {
                     Gun gun = (Gun)tempObject;
-                    Bullet bullet = new Bullet((int)((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle()))), (int)(gun.y- gun.getRadius()*Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, tempObject.getFacing() * 10);
-                    handler.addObject(bullet);
-                    bullet.setVelY(4.4f);
+                    if(gun.isPlayerTank()) {
+                        handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
+                                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun));
+                    }
                 }
 
             }
