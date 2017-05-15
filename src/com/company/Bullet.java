@@ -20,6 +20,7 @@ public class Bullet extends GameObject {
 
 
     public void tick(LinkedList<GameObject> object) {
+
         x += velX;
         velY += gravity;
         y -= velY ;
