@@ -11,10 +11,12 @@ public class Gun extends GameObject
 {
     Stack<Bullet> bullets;
     private float angle;
-    public Gun(float x, float y, ObjectId id, float gunAngle) {
+    private Tank tankID;
+    public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank) {
         super(x, y, id);
         this.bullets = new Stack<Bullet>();
         angle = gunAngle;
+        this.tankID = tank;
     }
 
     @Override
@@ -45,5 +47,8 @@ public class Gun extends GameObject
     }
     public void setAngle(float angle) {
         this.angle = angle;
+    }
+    public boolean isPlayerTank(){
+        return tankID.isPlayer();
     }
 }
