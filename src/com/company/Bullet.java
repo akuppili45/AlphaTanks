@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * Created by akupp_000 on 5/8/2017.
  */
 public class Bullet extends GameObject {
-    float gravity = -.5f;
+    float gravity = -.3f;
     private Gun gun;
 
 	public Bullet(float x, float y, ObjectId id, float velX, Gun gun) {
