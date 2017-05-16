@@ -64,7 +64,9 @@ public class KeyInput extends KeyAdapter
                                 (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun));
                     }
                 }
-
+                if(key == KeyEvent.VK_ESCAPE){
+                	System.exit(1);
+                }
             }
         }
     }
