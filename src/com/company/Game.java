@@ -27,9 +27,10 @@ public class Game extends Canvas implements Runnable
         handler = new Handler();
 
         PlayerTank pT = new PlayerTank(120, 700-32, ObjectId.PlayerTank, handler);
+        EnemyTank eT = new EnemyTank(1100,700-32,ObjectId.EnemyTank, handler, pT);
         handler.addObject(new Platform(0, 700, ObjectId.Platform, this));
         handler.addObject(pT);
-        handler.addObject(new EnemyTank(1100,700-32,ObjectId.EnemyTank, handler, pT));
+        handler.addObject(eT);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(new MouseInput());
 

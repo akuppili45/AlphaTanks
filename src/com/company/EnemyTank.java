@@ -22,6 +22,9 @@ public class EnemyTank extends Tank {
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, (int)width, (int)height);
         gun.render(g);
+        Graphics2D g2D = (Graphics2D)g;
+        g2D.setColor(Color.GREEN);
+        g2D.draw(getBounds());
     }
     public float getDistanceToOtherTank(){
         return Math.abs(tankData.getX() - this.getX());

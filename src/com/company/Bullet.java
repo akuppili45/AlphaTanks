@@ -1,7 +1,6 @@
 package com.company;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -40,6 +39,7 @@ public class Bullet extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.ORANGE);
 		g.fillRect((int) x, (int) y, 16, 16);
+        gun.getTankGunString();
 	}
 	
 	//public Rectangle getBounds() {
@@ -49,5 +49,9 @@ public class Bullet extends GameObject {
 	public String toString() {
 		return null;
 	}
+	public Rectangle getBottomBounds(){
+        return null;
+    }
+
 
 }
