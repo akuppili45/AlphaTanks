@@ -30,4 +30,10 @@ public class Platform extends GameObject {
         g.setColor(Color.BLACK);
         g.fillRect((int)x, (int)y, game.getWidth(),game.getHeight() - (int)getY() );
     }
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

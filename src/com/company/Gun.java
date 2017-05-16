@@ -28,6 +28,7 @@ public class Gun extends GameObject
     public void tick(LinkedList<GameObject> object) {
        x += velX;
     }
+    
     @Override
     public void render(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -51,4 +52,10 @@ public class Gun extends GameObject
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

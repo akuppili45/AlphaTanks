@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class Tank extends GameObject
 {
-    protected float width = 64, height = 32;
+    public static float width = 64, height = 32;
     Handler h;
     Gun gun;
     public Tank(float x, float y, ObjectId id, Handler handler) {
@@ -44,4 +44,8 @@ public class Tank extends GameObject
         return this.getID() == ObjectId.PlayerTank;
     }
 
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle((int) ((int)x + (width/2)-((width/2)/2)), (int) ((int)y+(height/2)-6), (int)width/2, (int)height/2);
+	}
 }

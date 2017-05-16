@@ -2,6 +2,7 @@ package com.company;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 
 /**
@@ -42,9 +43,9 @@ public class Bullet extends GameObject {
 		g.fillRect((int) x, (int) y, 16, 16);
 	}
 	
-	//public Rectangle getBounds() {
-	//	return new Rectangle((int)x,(int)y, 16, 16);
-	//} **fix later
+	public Rectangle getBounds() {
+		return new Rectangle((int)x,(int)y, 16, 16);
+	}
 
 	public String toString() {
 		return null;
