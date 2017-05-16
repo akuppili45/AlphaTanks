@@ -13,6 +13,7 @@ public class Game extends Canvas implements Runnable
     private Thread thread;
     public static int WIDTH,HEIGHT;
     //Objects
+    Camera cam;
     Handler handler;
     public synchronized void start(){
         if(running)
@@ -25,7 +26,7 @@ public class Game extends Canvas implements Runnable
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
         handler = new Handler();
-
+        cam = new Camera(0,0);
 
         handler.addObject(new Platform(0, 500, ObjectId.Platform, this));
         handler.addObject(new PlayerTank(120, 468, ObjectId.PlayerTank, handler));
@@ -67,6 +68,11 @@ public class Game extends Canvas implements Runnable
     }
     private void tick(){
         handler.tick();
+        for(int i = 0; i < handler.object.size(); i++ ){
+        	if(handler.object.get(i).getID() == ObjectId.PlayerTank){
+                cam.tick(handler.object.get(i));
+        	}
+        }
     }
     //Called in the game loop in this class.
     private void render(){
@@ -76,10 +82,14 @@ public class Game extends Canvas implements Runnable
             return;
         }
         Graphics g = bs.getDrawGraphics();
+        Graphics2D g2d = (Graphics2D) g;
         /////////////////////////////////
         //Draw Everything in here
         g.fillRect(0,0,getWidth(),getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
+        g2d.translate(cam.getX(), cam.getY()); //begin
         handler.render(g);
+        g2d.translate(-cam.getX(), -cam.getY()); //end
+
         /////////////////////
         g.dispose();
         bs.show();

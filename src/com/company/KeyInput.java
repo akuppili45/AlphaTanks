@@ -34,7 +34,7 @@ public class KeyInput extends KeyAdapter
                         gun.setVelY(-speed);
                     }
                 }
-                if(key== KeyEvent.VK_A){
+                if(key == KeyEvent.VK_A){
                     Gun gun = (Gun)tempObject;
                     if(gun.isPlayerTank()){
                         gun.setVelX(-speed);
