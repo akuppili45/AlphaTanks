@@ -22,33 +22,40 @@ public class PlayerTank extends Tank
         Collision(object);
     }
 
-    public void Collision(LinkedList<GameObject> object) {
+    public void Collision(LinkedList<GameObject> object) 
+    {
     	for(int i=0; i < handler.object.size();i++)
     	{
-    		GameObject tempObject = handler.object.get(i);
+    		GameObject tempObject = handler.object.get(i); //if you want to collide with other objects add an 'or' statement
     		
-    		if(tempObject.getID() == ObjectId.Block)
+    		if(tempObject.getID() == ObjectId.EnemyTank)
     		{
     			if(getBoundsTop().intersects((tempObject.getBounds())))
     			{
     				y = tempObject.getY() + (height/2);
     				velY= 0;
+    				System.out.println("collision"); //remove later
     			}
     			
     			if(getBounds().intersects((tempObject.getBounds())))
     			{
     				y = tempObject.getY() - height;
     				velY= 0;
+    				System.out.println("collision");
+
     			}	
     			
     			if(getBoundsRight().intersects((tempObject.getBounds())))
     			{
     				x = tempObject.getX() - width;
+    				System.out.println("collision");
+
     			}
     			
     			if(getBoundsLeft().intersects((tempObject.getBounds())))
     			{
     				x = tempObject.getX() - width;
+    				System.out.println("collision");
     			}
     		}
     	}

@@ -24,28 +24,36 @@ public class EnemyTank extends Tank {
     	{
     		GameObject tempObject = handler.object.get(i);
     		
-    		if(tempObject.getID() == ObjectId.Block)
+    		if(tempObject.getID() == ObjectId.PlayerTank) //if you want to collide with other objects add an 'or' statement
     		{
     			if(getBoundsTop().intersects((tempObject.getBounds())))
     			{
     				y = tempObject.getY() + (height/2);
     				velY= 0;
+    				System.out.println("collision");
+
     			}
     			
     			if(getBounds().intersects((tempObject.getBounds())))
     			{
     				y = tempObject.getY() - height;
     				velY= 0;
+    				System.out.println("collision");
+
     			}	
     			
     			if(getBoundsRight().intersects((tempObject.getBounds())))
     			{
     				x = tempObject.getX() - width;
+    				System.out.println("collision");
+
     			}
     			
     			if(getBoundsLeft().intersects((tempObject.getBounds())))
     			{
     				x = tempObject.getX() - width;
+    				System.out.println("collision");
+
     			}
     		}
     	}
