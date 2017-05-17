@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Platform extends GameObject {
 
 //Create a new Platform in game in the render method. Pass in this to the game parameter in the constructor.
-// Pass in speed and y parameters for the speed location and the y location(use player position for that)
+// Pass in gunSpeed and y parameters for the gunSpeed location and the y location(use player position for that)
     Game game;
     public Platform(float x, float y, ObjectId id, Game game) {
         super(x, y, id);

@@ -48,8 +48,8 @@ public class Tank extends GameObject
         g.fillRect((int) x, (int) y, (int)width, (int)height);
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
-        g2D.setColor(Color.GREEN);
-        g2D.draw(getBounds());
+        //g2D.setColor(Color.GREEN);
+        //g2D.draw(getBounds());
 
     }
     public boolean isPlayer(){
