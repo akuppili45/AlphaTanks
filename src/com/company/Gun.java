@@ -12,6 +12,7 @@ public class Gun extends GameObject
     Stack<Bullet> bullets;
     private float angle;
     private Tank tankID;
+    int x;
     public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank) {
         super(x, y, id);
         this.bullets = new Stack<Bullet>();
