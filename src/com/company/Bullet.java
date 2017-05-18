@@ -49,8 +49,20 @@ public class Bullet extends GameObject {
 	public String toString() {
 		return null;
 	}
-	public Rectangle getBottomBounds(){
+	public Rectangle getTopBounds(){
         return null;
+    }
+    public Rectangle getBottomBounds(){
+        return null;
+    }
+    public Rectangle getLeftBounds(){
+        return null;
+    }
+    public Rectangle getRightBounds(){
+        return null;
+    }
+    public boolean hitTank(Tank tank){
+        return false;
     }
 
 
