@@ -34,6 +34,7 @@ public class Tank extends GameObject
 
         gun.tick(object);
         x+=velX;
+        //if(isHit(new Bullet()))
 
     }
 
@@ -70,6 +71,11 @@ public class Tank extends GameObject
 
     public void setHealth(int health) {
         this.health = health;
+    }
+    public boolean isHit(Bullet bullet){
+        if(getBounds().intersects(bullet.getBounds()))
+            return true;
+        return false;
     }
 
 }
