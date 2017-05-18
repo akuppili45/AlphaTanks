@@ -11,6 +11,11 @@ public class Tank extends GameObject
     protected float width = 64, height = 32;
     Handler h;
     Gun gun;
+
+
+
+    int health = 10;
+    Tank enemyTankData;
     public Tank(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
         h = handler;
@@ -19,12 +24,17 @@ public class Tank extends GameObject
         h.addObject(this);
         h.addObject(gun);
     }
+    public Tank(float x, float y, ObjectId id, Handler handler, Tank tank){
+        super(x,y,id);
+        enemyTankData = tank;
+    }
 
     @Override
     public void tick(LinkedList<GameObject> object) {
 
         gun.tick(object);
         x+=velX;
+        //if(isHit(new Bullet()))
 
     }
 
@@ -38,10 +48,34 @@ public class Tank extends GameObject
         g.setColor(Color.BLUE);
         g.fillRect((int) x, (int) y, (int)width, (int)height);
         gun.render(g);
+        Graphics2D g2D = (Graphics2D)g;
+        //g2D.setColor(Color.GREEN);
+        //g2D.draw(getBounds());
 
     }
     public boolean isPlayer(){
         return this.getID() == ObjectId.PlayerTank;
+    }
+    public Gun getGun(){
+        return gun;
+    }
+    public Rectangle getBounds(){
+        return new Rectangle((int) (x+5), (int) (y-10), (int)(width - 10), 5);
+    }
+    public Tank getEnemyTankData(){
+        return enemyTankData;
+    }
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public boolean isHit(Bullet bullet){
+        if(getBounds().intersects(bullet.getBounds()))
+            return true;
+        return false;
     }
 
 }

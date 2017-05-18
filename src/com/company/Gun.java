@@ -52,4 +52,7 @@ public class Gun extends GameObject
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
+    public String getTankGunString(){
+        return "Tank1";
+    }
 }
