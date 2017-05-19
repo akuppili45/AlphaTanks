@@ -14,34 +14,39 @@ public class Bullet extends GameObject {
     int bulletWidth = 16;
     int bulletHeight = 16;
 
-	public Bullet(float x, float y, ObjectId id, float velX, Gun gun) {
+    Handler handler;
+
+    public Bullet(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
 		super(x, y, id);
 		this.velX = velX;
         this.gun = gun;
         velY = (float) (10 * Math.sin(Math.toRadians(gun.getAngle())));
+        this.handler = handler;
 	}
     public void tick(LinkedList<GameObject> object) {
-        if(y > 575){
         x += velX;
         velY += gravity;
-        y -= velY ;}
+        y -= velY ;
+        if(hitTank()) {
+
+            velX = 0;
+            velY = 0;
+            gravity = 0;
+            handler.removeObject(this);
+        }
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE );
-		g.fillRect((int) x, (int) y, 16, 16);
-        Graphics2D g2D = (Graphics2D)g;
-        g2D.setColor(Color.RED);
-        g2D.draw(getBounds());
-        g2D.draw(getBoundsTop());
-        g2D.draw(getBoundsRight());
-        g2D.draw(getBoundsLeft());
-	}
-	
-	//public Rectangle getBounds() {
-	//	return new Rectangle((int)x,(int)y, 16, 16);
-	//} **fix later
+            g.setColor(Color.BLUE);
+            g.fillRect((int) x, (int) y, 1, 1);
+            Graphics2D g2D = (Graphics2D) g;
+            g2D.draw(getBounds());
+            g2D.draw(getBoundsTop());
+            g2D.draw(getBoundsRight());
+            g2D.draw(getBoundsLeft());
 
+
+	}
 	public String toString() {
 		return null;
 	}
@@ -57,7 +62,18 @@ public class Bullet extends GameObject {
     public Rectangle getBoundsLeft() {
         return new Rectangle((int)x,(int)y+5,(int)5,(int)bulletHeight-10);
     }
-    public boolean hitTank(Tank tank){
+    public boolean hitTank(){
+        for(GameObject tempObject : handler.object){
+            if(tempObject.getID() == ObjectId.PlayerTank || tempObject.getID() == ObjectId.EnemyTank){
+                Tank t = (Tank)tempObject;
+                if(t.getBounds().intersects(getBounds())) {
+                    t.setHealth(t.getHealth()-1);
+                    System.out.println(t.getHealth());
+                    return true;
+                }
+            }
+        }
         return false;
     }
+
 }
