@@ -11,7 +11,7 @@ public class Tank extends GameObject
     protected float width = 64, height = 32;
     Handler h;
     Gun gun;
-    private int health = 10;
+    private int health = 3;
     Tank enemyTankData;
     public Tank(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
@@ -31,8 +31,8 @@ public class Tank extends GameObject
 
         gun.tick(object);
         x+=velX;
-        //if(isHit(new Bullet()))
-
+        if(getHealth() == 0)
+            h.removeObject(this);
     }
 
     @Override
@@ -42,12 +42,10 @@ public class Tank extends GameObject
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect((int) x, (int) y, (int)width, (int)height);
-        gun.render(g);
-        Graphics2D g2D = (Graphics2D)g;
-        //g2D.setColor(Color.GREEN);
-        //g2D.draw(getBounds());
+            g.setColor(Color.BLUE);
+            g.fillRect((int) x, (int) y, (int) width, (int) height);
+            gun.render(g);
+
 
     }
     public boolean isPlayer(){

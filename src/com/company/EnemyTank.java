@@ -10,11 +10,14 @@ public class EnemyTank extends Tank {
     PlayerTank tankData;
     public EnemyTank(float x, float y, ObjectId id, Handler handler, PlayerTank tank){
         super(x,y,id, handler);
+        this.setHealth(1);
         tankData = tank;
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
-
+        if(getHealth() == 0)
+            h.removeObject(this);
+            h.removeObject(this.gun);
     }
 
     @Override

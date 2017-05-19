@@ -68,6 +68,7 @@ public class Bullet extends GameObject {
                 Tank t = (Tank)tempObject;
                 if(t.getBounds().intersects(getBounds())) {
                     t.setHealth(t.getHealth()-1);
+                    System.out.println(t.getHealth());
                     return true;
                 }
             }
