@@ -13,8 +13,10 @@ public class Bullet extends GameObject {
     private Gun gun;
     int bulletWidth = 16;
     int bulletHeight = 16;
+
     Handler handler;
-	public Bullet(float x, float y, ObjectId id, float velX, Gun gun, Handler handler) {
+
+    public Bullet(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
 		super(x, y, id);
 		this.velX = velX;
         this.gun = gun;
@@ -25,24 +27,26 @@ public class Bullet extends GameObject {
         x += velX;
         velY += gravity;
         y -= velY ;
-        if(hitTank())
-            System.out.println("Hit tank");
+        if(hitTank()) {
+
+            velX = 0;
+            velY = 0;
+            gravity = 0;
+            handler.removeObject(this);
+        }
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE );
-		g.fillRect((int) x, (int) y, 16, 16);
-        Graphics2D g2D = (Graphics2D)g;
-        g2D.draw(getBounds());
-        g2D.draw(getBoundsTop());
-        g2D.draw(getBoundsRight());
-        g2D.draw(getBoundsLeft());
-	}
-	
-	//public Rectangle getBounds() {
-	//	return new Rectangle((int)x,(int)y, 16, 16);
-	//} **fix later
+            g.setColor(Color.BLUE);
+            g.fillRect((int) x, (int) y, 1, 1);
+            Graphics2D g2D = (Graphics2D) g;
+            g2D.draw(getBounds());
+            g2D.draw(getBoundsTop());
+            g2D.draw(getBoundsRight());
+            g2D.draw(getBoundsLeft());
 
+
+	}
 	public String toString() {
 		return null;
 	}
@@ -62,10 +66,13 @@ public class Bullet extends GameObject {
         for(GameObject tempObject : handler.object){
             if(tempObject.getID() == ObjectId.PlayerTank || tempObject.getID() == ObjectId.EnemyTank){
                 Tank t = (Tank)tempObject;
-                if(t.getBounds().intersects(getBounds()))
+                if(t.getBounds().intersects(getBounds())) {
+                    t.setHealth(t.getHealth()-1);
                     return true;
+                }
             }
         }
         return false;
     }
+
 }

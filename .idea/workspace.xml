@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b383c32-be28-4f21-82e0-1bd1fcc0b4f0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlphaTanks/com/company/Bullet.class" afterPath="$PROJECT_DIR$/out/production/AlphaTanks/com/company/Bullet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlphaTanks/com/company/Tank.class" afterPath="$PROJECT_DIR$/out/production/AlphaTanks/com/company/Tank.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Bullet.java" afterPath="$PROJECT_DIR$/src/com/company/Bullet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/KeyInput.java" afterPath="$PROJECT_DIR$/src/com/company/KeyInput.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Tank.java" afterPath="$PROJECT_DIR$/src/com/company/Tank.java" />
     </list>
     <ignored path="AlphaTanks.iws" />
@@ -33,8 +34,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+            <state relative-caret-position="271">
+              <caret line="81" column="114" selection-start-line="81" selection-start-column="114" selection-end-line="81" selection-end-column="114" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,8 +69,8 @@
       <file leaf-file-name="Tank.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Tank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="75" column="40" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+            <state relative-caret-position="359">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,8 +81,8 @@
       <file leaf-file-name="KeyInput.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/KeyInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="65" column="188" selection-start-line="65" selection-start-column="188" selection-end-line="65" selection-end-column="188" />
+            <state relative-caret-position="0">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,8 +123,8 @@
       <file leaf-file-name="Bullet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Bullet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-451">
-              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+            <state relative-caret-position="209">
+              <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -168,13 +169,13 @@
         <option value="$PROJECT_DIR$/src/com/company/MouseInput.java" />
         <option value="$PROJECT_DIR$/src/com/company/Window.java" />
         <option value="$PROJECT_DIR$/src/com/company/ObjectId.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Game.java" />
         <option value="$PROJECT_DIR$/src/com/company/EnemyTank.java" />
         <option value="$PROJECT_DIR$/src/com/company/PlayerTank.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gun.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Game.java" />
         <option value="$PROJECT_DIR$/src/com/company/KeyInput.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Tank.java" />
         <option value="$PROJECT_DIR$/src/com/company/Bullet.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Tank.java" />
       </list>
     </option>
   </component>
@@ -848,16 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gun.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
@@ -876,10 +867,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/KeyInput.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="65" column="188" selection-start-line="65" selection-start-column="188" selection-end-line="65" selection-end-column="188" />
+        <state relative-caret-position="271">
+          <caret line="81" column="114" selection-start-line="81" selection-start-column="114" selection-end-line="81" selection-end-column="114" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -888,8 +879,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Tank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="75" column="40" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+        <state relative-caret-position="359">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/KeyInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -898,8 +899,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Bullet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-451">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+        <state relative-caret-position="209">
+          <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
           <folding />
         </state>
       </provider>

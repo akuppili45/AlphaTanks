@@ -11,10 +11,7 @@ public class Tank extends GameObject
     protected float width = 64, height = 32;
     Handler h;
     Gun gun;
-
-
-
-    int health = 10;
+    private int health = 10;
     Tank enemyTankData;
     public Tank(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
@@ -72,10 +69,5 @@ public class Tank extends GameObject
     public void setHealth(int health) {
         this.health = health;
     }
-//    public boolean isHit(Bullet bullet){
-//        if(getBounds().intersects(bullet.getBounds()))
-//            return true;
-//        return false;
-//    }
 
 }
