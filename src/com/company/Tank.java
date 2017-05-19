@@ -72,10 +72,10 @@ public class Tank extends GameObject
     public void setHealth(int health) {
         this.health = health;
     }
-    public boolean isHit(Bullet bullet){
-        if(getBounds().intersects(bullet.getBounds()))
-            return true;
-        return false;
-    }
+//    public boolean isHit(Bullet bullet){
+//        if(getBounds().intersects(bullet.getBounds()))
+//            return true;
+//        return false;
+//    }
 
 }
