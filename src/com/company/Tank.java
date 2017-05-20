@@ -17,19 +17,16 @@ public class Tank extends GameObject
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
-        gun = new Gun(x+30,y,ObjectId.Gun, 45, this, handler);//x=120, y=468
+        //x=120, y=468        // move this to render.
         h.addObject(this);
+        gun = new Gun(x+30,y,ObjectId.Gun, 45, this, h);
         h.addObject(gun);
-    }
-    public Tank(float x, float y, ObjectId id, Handler handler, Tank tank){
-        super(x,y,id);
-        enemyTankData = tank;
-    }
 
+    }
     @Override
     public void tick(LinkedList<GameObject> object) {
 
-        gun.tick(object);
+        gun.setX(x+30);
         x+=velX;
         collision();
         if(getHealth() == 0)
@@ -43,6 +40,7 @@ public class Tank extends GameObject
 
     @Override
     public void render(Graphics g) {
+
             g.setColor(Color.BLUE);
             g.fillRect((int) x, (int) y, (int) width, (int) height);
             gun.render(g);
@@ -51,10 +49,6 @@ public class Tank extends GameObject
             g2D.setColor(Color.MAGENTA);
             g2D.draw(getBoundsLeft());
             g2D.draw(getBoundsRight());
-        System.out.println("Tank x: " + x);
-        System.out.println("Gun x: " + gun.x);
-
-
     }
     public boolean isPlayer(){
         return this.getID() == ObjectId.PlayerTank;
