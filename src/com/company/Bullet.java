@@ -20,7 +20,7 @@ public class Bullet extends GameObject {
 		super(x, y, id);
 		this.velX = velX;
         this.gun = gun;
-        velY = (float) (10 * Math.sin(Math.toRadians(gun.getAngle())));
+        velY = (float) (20 * Math.sin(Math.toRadians(gun.getAngle())));
         this.handler = handler;
 	}
     //public Bullet(){

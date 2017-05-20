@@ -15,6 +15,7 @@ public class Game extends Canvas implements Runnable
     private BufferedImage level = null;
     //Objects
     Handler handler;
+    Camera cam;
     public synchronized void start(){
         if(running)
             return;
@@ -26,6 +27,7 @@ public class Game extends Canvas implements Runnable
         BufferedImageLoader loader = new BufferedImageLoader();
         level = loader.loadImage("/level2.png");//loading the level
         handler = new Handler();
+        cam = new Camera(0,0);
         loadImageLevel(level );
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
@@ -73,6 +75,10 @@ public class Game extends Canvas implements Runnable
     }
     private void tick(){
         handler.tick();
+        for(GameObject a : handler.object){
+            if(a.getID() == ObjectId.PlayerTank)
+                cam.tick(a);
+        }
     }
     //Called in the game loop in this class.
     private void render(){
@@ -82,11 +88,14 @@ public class Game extends Canvas implements Runnable
             return;
         }
         Graphics g = bs.getDrawGraphics();
+        Graphics2D g2D = (Graphics2D)g;
         /////////////////////////////////
         //Draw Everything in here
         //g.setColor(Color.GRAY);
         g.fillRect(0,0,getWidth(),getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
+        g2D.translate(cam.getX(),cam.getY());
         handler.render(g);
+        g2D.translate(-cam.getX(),-cam.getY());
         /////////////////////
         g.dispose();
         bs.show();
