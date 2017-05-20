@@ -112,7 +112,7 @@ public class Game extends Canvas implements Runnable
                     pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler);
                     handler.addObject(pT);
                 }
-                if(red == 228 && green == 51 && blue == 51){
+                if(red == 255 && green == 0 && blue == 0){
                     handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler));
                 }
             }
