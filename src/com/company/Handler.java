@@ -22,10 +22,17 @@ public class Handler
             tempObject.render(g);
         }
     }
+    
     public void addObject(GameObject object){
         this.object.add(object);
     }
     public void removeObject(GameObject object){
         this.object.remove(object);
+    }
+    
+    public void createLevel()
+    {
+    	for(int xx = 0; xx < Game.WIDTH+32; xx += 32)
+    		addObject(new Platform(xx, Game.HEIGHT-32, ObjectId.Platform));
     }
 }

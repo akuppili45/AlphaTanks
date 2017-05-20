@@ -85,11 +85,11 @@ public class PlayerTank extends Tank
     }
     
     public Rectangle getBoundsRight(){
-    	return new Rectangle((int) ((int)x+width-7), (int)y+5, (int)1, (int)height-10);
+    	return new Rectangle((int) ((int)x+width-6), (int)y+5, (int)1, (int)height-10);
     }
     
     public Rectangle getBoundsLeft(){
-    	return new Rectangle((int)x+6, (int)y+5, (int)1, (int)height-10);
+    	return new Rectangle((int)x+5, (int)y+5, (int)1, (int)height-10);
     }
     
 }

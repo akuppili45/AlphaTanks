@@ -10,10 +10,8 @@ public class Platform extends GameObject {
 
 //Create a new Platform in game in the render method. Pass in this to the game parameter in the constructor.
 // Pass in speed and y parameters for the speed location and the y location(use player position for that)
-    Game game;
-    public Platform(float x, float y, ObjectId id, Game game) {
+    public Platform(float x, float y, ObjectId id) {
         super(x, y, id);
-        this.game = game;
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
@@ -27,13 +25,12 @@ public class Platform extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect((int)x, (int)y, game.getWidth(),game.getHeight() - (int)getY() );
+        g.setColor(Color.WHITE);
+        g.fillRect((int)x, (int)y, 32, 32 );
     }
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 
 }
