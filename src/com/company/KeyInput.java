@@ -48,14 +48,14 @@ public class KeyInput extends KeyAdapter {
                 if (gun.getAngle() <= 90) {
                     if (key == KeyEvent.VK_LEFT) {
                         if (gun.isPlayerTank()){
-                            gun.setAngle(gun.getAngle() + 10);
+                            gun.rotateIncreaseAngle();
                     }
                     }
                 }
                 if (gun.getAngle() > 0) {
                     if (key == KeyEvent.VK_RIGHT) {
                         if (gun.isPlayerTank()){
-                            gun.setAngle(gun.getAngle() - 10);
+                            gun.rotateDecreaseAngle();
                     }
                     }
                 }

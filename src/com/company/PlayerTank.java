@@ -21,9 +21,6 @@ public class PlayerTank extends Tank
     @Override
     public void render(Graphics g) {
         super.render(g);
-        //System.out.println("Tank Pos: " + this.getX() + "," + this.getY());
-        //System.out.println("Gun Pos: " + this.getGun().getX() + "," + this.getGun().getY());
-
     }
 
 

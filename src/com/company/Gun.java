@@ -56,6 +56,12 @@ public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler han
     public void fire(){
 
     }
+    public void rotateIncreaseAngle(){
+        angle += 10;
+    }
+    public void rotateDecreaseAngle(){
+        angle -= 10;
+    }
     public Stack<Bullet> getBullets(){
         return bullets;
     }
