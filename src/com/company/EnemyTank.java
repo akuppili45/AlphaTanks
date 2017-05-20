@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * Created by akupp_000 on 5/8/2017.
  */
 public class EnemyTank extends Tank {
+<<<<<<< HEAD
 	
 	private Handler handler;
 	
@@ -17,6 +18,19 @@ public class EnemyTank extends Tank {
     @Override
     public void tick(LinkedList<GameObject> object) {
     	Collision(object);
+=======
+    PlayerTank tankData;
+    public EnemyTank(float x, float y, ObjectId id, Handler handler, PlayerTank tank){
+        super(x,y,id, handler);
+        this.setHealth(1);
+        tankData = tank;
+    }
+    @Override
+    public void tick(LinkedList<GameObject> object) {
+        if(getHealth() == 0)
+            h.removeObject(this);
+            h.removeObject(this.gun);
+>>>>>>> refs/remotes/origin/master
     }
     
     public void Collision(LinkedList<GameObject> object) {
@@ -64,6 +78,7 @@ public class EnemyTank extends Tank {
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, (int)width, (int)height);
         gun.render(g);
+<<<<<<< HEAD
         
         Graphics2D g2d = (Graphics2D)g;
         g.setColor(Color.black);
@@ -88,5 +103,15 @@ public class EnemyTank extends Tank {
     public Rectangle getBoundsLeft(){
     	return new Rectangle((int)x+6, (int)y+5, (int)1, (int)height-10);
     }
+=======
+        Graphics2D g2D = (Graphics2D)g;
+        g2D.setColor(Color.GREEN);
+        g2D.draw(getBounds());
+    }
+    public float getDistanceToOtherTank(){
+        return Math.abs(tankData.getX() - this.getX());
+
+    }
+>>>>>>> refs/remotes/origin/master
 
 }

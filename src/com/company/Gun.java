@@ -52,10 +52,16 @@ public class Gun extends GameObject
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
+<<<<<<< HEAD
 
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+=======
+    public String getTankGunString(){
+        return "Tank1";
+    }
+>>>>>>> refs/remotes/origin/master
 }

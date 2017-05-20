@@ -64,6 +64,7 @@ public class PlayerTank extends Tank
     @Override
     public void render(Graphics g) {
         super.render(g);
+<<<<<<< HEAD
         
         Graphics2D g2d = (Graphics2D)g;
         g.setColor(Color.GREEN);
@@ -74,6 +75,11 @@ public class PlayerTank extends Tank
         g2d.draw(getBoundsLeft());
         g.setColor(Color.WHITE);
         g2d.draw(getBoundsTop());
+=======
+        //System.out.println("Tank Pos: " + this.getX() + "," + this.getY());
+        //System.out.println("Gun Pos: " + this.getGun().getX() + "," + this.getGun().getY());
+
+>>>>>>> refs/remotes/origin/master
     }
 
     public Rectangle getBounds(){
