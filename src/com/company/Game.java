@@ -124,6 +124,9 @@ public class Game extends Canvas implements Runnable
                 if(red == 255 && green == 0 && blue == 0){
                     handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler));
                 }
+                if(red == 255 && green == 216 && blue == 0){
+                    handler.addObject(new Flag(xx*32, yy*32,ObjectId.Flag));
+                }
             }
         }
     }

@@ -32,30 +32,30 @@ public class KeyInput extends KeyAdapter {
             if (tempObject.getID() == ObjectId.Gun) {
                 //initialize default gun
                 Gun gun = (Gun) tempObject;
-                if (key == KeyEvent.VK_D) {
-                    if (gun.isPlayerTank()) {
-                        gun.setVelX(3.33f);
-                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
-                    }
-                }
-                if (key == KeyEvent.VK_A) {
-                    if (gun.isPlayerTank()) {
-                        gun.setVelX(-3.33f);
-                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
-                    }
-
-                }
+//                if (key == KeyEvent.VK_D) {
+//                    if (gun.isPlayerTank()) {
+//                        gun.setVelX(3.33f);
+//                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
+//                    }
+//                }
+//                if (key == KeyEvent.VK_A) {
+//                    if (gun.isPlayerTank()) {
+//                        gun.setVelX(-3.33f);
+//                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
+//                    }
+//
+//                }
                 if (gun.getAngle() <= 90) {
                     if (key == KeyEvent.VK_LEFT) {
                         if (gun.isPlayerTank()){
-                            gun.setAngle(gun.getAngle() + 10);
+                            gun.rotateIncreaseAngle();
                     }
                     }
                 }
                 if (gun.getAngle() > 0) {
                     if (key == KeyEvent.VK_RIGHT) {
                         if (gun.isPlayerTank()){
-                            gun.setAngle(gun.getAngle() - 10);
+                            gun.rotateDecreaseAngle();
                     }
                     }
                 }

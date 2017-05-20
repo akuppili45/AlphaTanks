@@ -30,4 +30,7 @@ public class Platform extends GameObject {
         g.setColor(Color.WHITE);
         g.drawRect((int)x, (int)y, 32,32 );
     }
+    public Rectangle getBounds(){
+        return new Rectangle((int)x, (int)y, 32,32);
+    }
 }
