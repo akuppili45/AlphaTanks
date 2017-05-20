@@ -2,7 +2,7 @@ package com.company;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-
+import java.awt.image.BufferedImage;
 /**
  * Created by akupp_000 on 5/5/2017.
  */
@@ -12,6 +12,7 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
+    private BufferedImage level = null;
     //Objects
     Handler handler;
     public synchronized void start(){
@@ -22,15 +23,19 @@ public class Game extends Canvas implements Runnable
         thread.start();
     }
     private void init(){
+        BufferedImageLoader loader = new BufferedImageLoader();
+        level = loader.loadImage("/level2.png");//loading the level
+        handler = new Handler();
+        loadImageLevel(level );
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
-        handler = new Handler();
 
-        PlayerTank pT = new PlayerTank(120, 700-32, ObjectId.PlayerTank, handler);
-        EnemyTank eT = new EnemyTank(1100,700-32,ObjectId.EnemyTank, handler, pT);
-        handler.addObject(new Platform(0, 700, ObjectId.Platform, this));
-        handler.addObject(pT);
-        handler.addObject(eT);
+
+//        PlayerTank pT = new PlayerTank(120, 700-32, ObjectId.PlayerTank, handler);
+//        EnemyTank eT = new EnemyTank(1100,700-32,ObjectId.EnemyTank, handler, pT);
+//        handler.addObject(new Platform(0, 700, ObjectId.Platform, this));
+//        handler.addObject(pT);
+//        handler.addObject(eT);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(new MouseInput());
 
@@ -79,11 +84,39 @@ public class Game extends Canvas implements Runnable
         Graphics g = bs.getDrawGraphics();
         /////////////////////////////////
         //Draw Everything in here
+        //g.setColor(Color.GRAY);
         g.fillRect(0,0,getWidth(),getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
         handler.render(g);
         /////////////////////
         g.dispose();
         bs.show();
+    }
+    private void loadImageLevel(BufferedImage image){
+        int w = image.getWidth();
+        int h = image.getHeight();
+        int xx;
+        int yy ;
+        PlayerTank pT;
+        //EnemyTank eT = new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler);
+        System.out.println("width, height" + w + "," + h);
+        for( xx = 0; xx < h; xx++){
+            for( yy = 0; yy < w; yy++){
+
+                int pixel = image.getRGB(xx,yy);
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = (pixel) & 0xff;
+                if(red == 255 && green == 255 && blue == 255)
+                    handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
+                if(red == 0 && green == 0 && blue == 255) {
+                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler);
+                    handler.addObject(pT);
+                }
+                if(red == 228 && green == 51 && blue == 51){
+                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler));
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

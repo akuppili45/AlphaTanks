@@ -12,12 +12,13 @@ public class Gun extends GameObject
     Stack<Bullet> bullets;
     private float angle;
     private Tank tankID;
-    int x;
-    public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank) {
+public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
-        this.bullets = new Stack<Bullet>();
+        //this.bullets = new Stack<Bullet>();
         angle = gunAngle;
         this.tankID = tank;
+        this.handler = handler;
+
     }
 
     @Override
@@ -52,7 +53,10 @@ public class Gun extends GameObject
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
-    public String getTankGunString(){
-        return "Tank1";
+    public void fire(){
+
+    }
+    public Stack<Bullet> getBullets(){
+        return bullets;
     }
 }

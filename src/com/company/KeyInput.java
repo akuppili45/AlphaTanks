@@ -62,8 +62,9 @@ public class KeyInput extends KeyAdapter {
 
                 if (key == KeyEvent.VK_SPACE) {
                     if (gun.isPlayerTank()) {
-                        handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
+                     handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
                                 (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
+                            //handler.addObject(gun.getBullets().pop());
                     }
                 }
 
