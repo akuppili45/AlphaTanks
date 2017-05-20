@@ -17,7 +17,7 @@ public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler han
         //this.bullets = new Stack<Bullet>();
         angle = gunAngle;
         this.tankID = tank;
-       
+
 
     }
 
