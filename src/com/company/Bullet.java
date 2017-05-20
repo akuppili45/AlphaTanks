@@ -23,11 +23,15 @@ public class Bullet extends GameObject {
         velY = (float) (10 * Math.sin(Math.toRadians(gun.getAngle())));
         this.handler = handler;
 	}
+    //public Bullet(){
+//        this = new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
+//                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
+//    }
     public void tick(LinkedList<GameObject> object) {
         x += velX;
         velY += gravity;
         y -= velY ;
-        if(hitTank()) {
+            if(hitTank()) {
 
             velX = 0;
             velY = 0;
@@ -37,7 +41,7 @@ public class Bullet extends GameObject {
 	}
 
 	public void render(Graphics g) {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.YELLOW);
             g.fillRect((int) x, (int) y, 1, 1);
             Graphics2D g2D = (Graphics2D) g;
             g2D.draw(getBounds());
@@ -68,12 +72,14 @@ public class Bullet extends GameObject {
                 Tank t = (Tank)tempObject;
                 if(t.getBounds().intersects(getBounds())) {
                     t.setHealth(t.getHealth()-1);
-                    System.out.println(t.getHealth());
                     return true;
                 }
             }
         }
         return false;
+    }
+    public void fire(){
+
     }
 
 }

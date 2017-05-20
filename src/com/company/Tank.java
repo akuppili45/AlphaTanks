@@ -17,7 +17,7 @@ public class Tank extends GameObject
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
-        gun = new Gun(x+30,y,ObjectId.Gun, 45, this);//x=120, y=468
+        gun = new Gun(x+30,y,ObjectId.Gun, 45, this, handler);//x=120, y=468
         h.addObject(this);
         h.addObject(gun);
     }
