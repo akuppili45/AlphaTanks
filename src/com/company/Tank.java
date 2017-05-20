@@ -90,6 +90,11 @@ public class Tank extends GameObject
                 }
 
             }
+            else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.Flag){
+                Flag f = (Flag)a;
+                if(getBoundsRight().intersects(f.getBounds()))
+                    h.clearLevel();
+            }
         }
 
 }
