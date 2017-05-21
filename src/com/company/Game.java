@@ -124,7 +124,6 @@ public class Game extends Canvas implements Runnable
         int xx;
         int yy ;
         PlayerTank pT;
-        //EnemyTank eT = new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler);
         System.out.println("width, height" + w + "," + h);
         for( xx = 0; xx < h; xx++){
             for( yy = 0; yy < w; yy++){
@@ -145,6 +144,8 @@ public class Game extends Canvas implements Runnable
                 if(red == 255 && green == 216 && blue == 0){
                     handler.addObject(new Flag(xx*32, yy*32,ObjectId.Flag));
                 }
+                if(red == 0 && green == 255 && blue == 33)
+                    handler.addObject(new PowerUp(xx*32, yy*32, ObjectId.PowerUp));
             }
         }
     }
