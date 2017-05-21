@@ -35,6 +35,7 @@ public class Tank extends GameObject
         collision();
         if(getHealth() == 0)
             h.removeObject(this);
+
     }
 
     @Override

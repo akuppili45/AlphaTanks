@@ -15,9 +15,10 @@ public class EnemyTank extends Tank {
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
-        if(getHealth() == 0)
+        if(getHealth() == 0) {
             h.removeObject(this);
             h.removeObject(this.gun);
+        }
     }
 
     @Override
@@ -29,9 +30,17 @@ public class EnemyTank extends Tank {
         g2D.setColor(Color.GREEN);
         g2D.draw(getBounds());
     }
-    public float getDistanceToOtherTank(){
-        return Math.abs(tankData.getX() - this.getX());
-
+    public void aim(PlayerTank tank){
+        //Get PlayerTank position
+        float playerX = tank.getX();
+        float playerY = tank.getY();
+        float dx = playerX - x;
+        float dy = playerY - y;
+        float distance = (float) Math.sqrt(dx*dx + dy * dy);
+        float angleToPlayer = (float) Math.toDegrees(Math.atan(dy/dx));
+    }
+    public void fire(){
+        getGun().fire(h);
     }
 
 }
