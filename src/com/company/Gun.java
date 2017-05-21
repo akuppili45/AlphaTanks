@@ -14,13 +14,15 @@ public class Gun extends GameObject
     private Tank tankID;
     Handler h;
     boolean filledMagazine = false;
-
+    int numBullets = 10;
     public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
-        //this.bullets = new Stack<Bullet>();
         angle = gunAngle;
         this.tankID = tank;
         h = handler;
+        for(int i = 0; i < numBullets; i++){
+            bullets.push(new Bullet(ObjectId.Bullet));
+        }
     }
 
     @Override
@@ -61,12 +63,13 @@ public class Gun extends GameObject
     }
 
     public void fire(Handler h){
-        Bullet b = new Bullet(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
-                (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(getAngle()))), this, h);
-        for (int i = 0; i < 3; i++)
-            bullets.push(b);
-        if(bullets.size() != 0)
-            h.addObject(bullets.pop());
+        if(bullets.size() != 0) {
+            Bullet b = bullets.pop();
+            b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
+                    (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(getAngle()))), this, h);
+
+            h.addObject(b);
+        }
 
     }
     public void rotateIncreaseAngle(){
@@ -78,11 +81,5 @@ public class Gun extends GameObject
     public Stack<Bullet> getBullets(){
         return bullets;
     }
-    public void initializeStack(){
-        Bullet b = new Bullet(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
-                (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(getAngle()))), this, h);
-        for(int i = 0; i < 3; i++){
-            bullets.push(b);
-        }
-    }
+
 }
