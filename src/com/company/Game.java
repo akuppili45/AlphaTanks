@@ -25,9 +25,15 @@ public class Game extends Canvas implements Runnable
         thread= new Thread(this);
         thread.start();
     }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
     public void init(){
 
         BufferedImageLoader loader = new BufferedImageLoader();
+
         BufferedImage level = null;
         handler = new Handler();
         cam = new Camera(0,0);
