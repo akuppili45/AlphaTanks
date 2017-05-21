@@ -32,19 +32,6 @@ public class KeyInput extends KeyAdapter {
             if (tempObject.getID() == ObjectId.Gun) {
                 //initialize default gun
                 Gun gun = (Gun) tempObject;
-//                if (key == KeyEvent.VK_D) {
-//                    if (gun.isPlayerTank()) {
-//                        gun.setVelX(3.33f);
-//                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
-//                    }
-//                }
-//                if (key == KeyEvent.VK_A) {
-//                    if (gun.isPlayerTank()) {
-//                        gun.setVelX(-3.33f);
-//                        //System.out.println("Gun Pos: " + tempObject.getX() + "," + tempObject.getY());
-//                    }
-//
-//                }
                 if (gun.getAngle() <= 90) {
                     if (key == KeyEvent.VK_LEFT) {
                         if (gun.isPlayerTank()){
@@ -62,9 +49,10 @@ public class KeyInput extends KeyAdapter {
 
                 if (key == KeyEvent.VK_SPACE) {
                     if (gun.isPlayerTank()) {
-                     handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
-                                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
+//                     handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
+//                                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
                             //handler.addObject(gun.getBullets().pop());
+                        gun.fire(handler);
                     }
                 }
 

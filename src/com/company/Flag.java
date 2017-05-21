@@ -29,6 +29,10 @@ public class Flag extends GameObject
     public void render(Graphics g) {
         g.setColor(Color.CYAN);
         g.fillRect((int) x, (int) y, 32, 32);
+        Graphics2D g2D = (Graphics2D)g;
+        g2D.setStroke(new BasicStroke(0));
+        g2D.setColor(Color.MAGENTA);
+        //g2D.draw(getBounds());
     }
     public String toString() {
         return null;
