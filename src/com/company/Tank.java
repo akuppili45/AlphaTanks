@@ -99,7 +99,7 @@ public class Tank extends GameObject
                 if(getBoundsRight().intersects(f.getBounds())) {
                     h.clearLevel();
                     cam.setX(0);
-                    //game.setCurrentLevel(2);
+                    game.setCurrentLevel(2);
                     game.init();
                 }
             }
