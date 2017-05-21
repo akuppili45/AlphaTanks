@@ -37,10 +37,17 @@ public class EnemyTank extends Tank {
         float dx = playerX - x;
         float dy = playerY - y;
         float distance = (float) Math.sqrt(dx*dx + dy * dy);
-        float angleToPlayer = (float) Math.toDegrees(Math.atan(dy/dx));
+        float displacement;
+        if(playerX < x)
+            displacement = -dx;
+        else
+            displacement = dx;
+        float angleToEnemy = (float) Math.toDegrees(Math.atan(dy/dx));
+        float targetAngle = 180 - angleToEnemy;
+
     }
     public void fire(){
-        getGun().fire(h);
+        getGun().fireToPlayer(h);
     }
 
 }
