@@ -83,8 +83,5 @@ public class Bullet extends GameObject {
         }
         return false;
     }
-    public void fire(){
-
-    }
 
 }
