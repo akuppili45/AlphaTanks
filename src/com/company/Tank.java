@@ -13,7 +13,9 @@ public class Tank extends GameObject
     Gun gun;
     private int health = 3;
     Tank enemyTankData;
-    public Tank(float x, float y, ObjectId id, Handler handler) {
+    private Camera cam;
+    
+    public Tank(float x, float y, ObjectId id, Handler handler, Camera cam) {
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
@@ -21,6 +23,7 @@ public class Tank extends GameObject
         h.addObject(this);
         gun = new Gun(x+30,y,ObjectId.Gun, 45, this, h);
         h.addObject(gun);
+        this.cam = cam;
 
     }
     @Override
@@ -93,7 +96,10 @@ public class Tank extends GameObject
             else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.Flag){
                 Flag f = (Flag)a;
                 if(getBoundsRight().intersects(f.getBounds()))
-                    h.clearLevel();
+                {
+                    h.switchLevel();
+                	cam.setX(0);
+                }
             }
         }
 

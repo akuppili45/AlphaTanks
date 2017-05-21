@@ -8,8 +8,10 @@ import java.util.LinkedList;
  */
 public class EnemyTank extends Tank {
     PlayerTank tankData;
-    public EnemyTank(float x, float y, ObjectId id, Handler handler){
-        super(x,y,id, handler);
+    private Camera cam;
+    
+    public EnemyTank(float x, float y, ObjectId id, Handler handler, Camera cam){
+        super(x,y,id, handler, cam);
         this.setHealth(1);
         //tankData = tank;
     }

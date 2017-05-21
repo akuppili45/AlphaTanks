@@ -12,10 +12,12 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-    private BufferedImage level = null;
+    public BufferedImage level = null, level2 = null;
     //Objects
     Handler handler;
     Camera cam;
+    public static int LEVEL = 1;
+    
     public synchronized void start(){
         if(running)
             return;
@@ -25,10 +27,10 @@ public class Game extends Canvas implements Runnable
     }
     private void init(){
         BufferedImageLoader loader = new BufferedImageLoader();
-        level = loader.loadImage("/level2.png");//loading the level
-        handler = new Handler();
+        level = loader.loadImage("/levela.png");//loading the level
         cam = new Camera(0,0);
-        loadImageLevel(level );
+        handler = new Handler(cam);
+        handler.loadImageLevel(level);
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
 
@@ -118,11 +120,11 @@ public class Game extends Canvas implements Runnable
                 if(red == 255 && green == 255 && blue == 255)
                     handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
                 if(red == 0 && green == 0 && blue == 255) {
-                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler);
+                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler, cam);
                     handler.addObject(pT);
                 }
                 if(red == 255 && green == 0 && blue == 0){
-                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler));
+                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler, cam));
                 }
                 if(red == 255 && green == 216 && blue == 0){
                     handler.addObject(new Flag(xx*32, yy*32,ObjectId.Flag));
