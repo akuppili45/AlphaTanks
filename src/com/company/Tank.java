@@ -106,8 +106,10 @@ public class Tank extends GameObject
             else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.PowerUp){
                 PowerUp p = (PowerUp)a;
                 if(getBoundsRight().intersects(p.getBounds())){
+                    p.setRemove(true);
                     for(int i = 0; i < 10; i++)
                         getGun().getBullets().push(new Bullet(ObjectId.Bullet));
+
                 }
 
             }

@@ -1,5 +1,7 @@
 package com.company;
 
+import jdk.internal.org.objectweb.asm.Handle;
+
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -8,12 +10,22 @@ import java.util.LinkedList;
  */
 public class PowerUp extends GameObject
 {
-    public PowerUp(float x, float y, ObjectId id) {
+    boolean remove = false;
+    Handler handler;
+
+    public void setRemove(boolean remove) {
+        this.remove = remove;
+    }
+
+    public PowerUp(float x, float y, ObjectId id, Handler handler) {
         super(x, y, id);
+        this.handler = handler;
+
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
-
+            if(remove)
+                handler.removeObject(this);
     }
 
     @Override
