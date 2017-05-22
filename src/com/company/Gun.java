@@ -62,14 +62,18 @@ public class Gun extends GameObject
         this.filledMagazine = filledMagazine;
     }
 
+    //For PlayerTank only. Make another method similar to this one but applies only to EnemyTank.
     public void fire(Handler h){
         if(bullets.size() != 0) {
             Bullet b = bullets.pop();
             b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
-                    (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(getAngle()))), this, h);
+                    (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
 
             h.addObject(b);
         }
+
+    }
+    public void fireToPlayer(Handler h){
 
     }
     public void rotateIncreaseAngle(){

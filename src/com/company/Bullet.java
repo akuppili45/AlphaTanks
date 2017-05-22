@@ -13,7 +13,7 @@ public class Bullet extends GameObject {
     private Gun gun;
     int bulletWidth = 16;
     int bulletHeight = 16;
-
+    float initialVelocity = 20;
     Handler handler;
 
     public void setValues(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
@@ -22,12 +22,17 @@ public class Bullet extends GameObject {
         setY(y);
 		this.velX = velX;
         this.gun = gun;
-        velY = (float) (20 * Math.sin(Math.toRadians(gun.getAngle())));
+        velY = (float) (initialVelocity * Math.sin(Math.toRadians(gun.getAngle())));
         this.handler = handler;
 	}
     public Bullet(ObjectId id){
         super(id);
     }
+
+    public void setInitialVelocity(float initialVelocity) {
+        this.initialVelocity = initialVelocity;
+    }
+
     //public Bullet(){
 //        this = new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
 //                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
@@ -36,7 +41,7 @@ public class Bullet extends GameObject {
         x += velX;
         velY += gravity;
         y -= velY ;
-            if(hitTank()) {
+            if(hitTank() || hitPlatform()) {
 
             velX = 0;
             velY = 0;
@@ -77,6 +82,17 @@ public class Bullet extends GameObject {
                 Tank t = (Tank)tempObject;
                 if(t.getBounds().intersects(getBounds())) {
                     t.setHealth(t.getHealth()-1);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean hitPlatform(){
+        for(GameObject tempObject : handler.object){
+            if(tempObject.getID() == ObjectId.Platform){
+                Platform t = (Platform) tempObject;
+                if(t.getBounds().intersects(getBounds())) {
                     return true;
                 }
             }
