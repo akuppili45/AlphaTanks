@@ -13,7 +13,7 @@ public class Bullet extends GameObject {
     private Gun gun;
     int bulletWidth = 16;
     int bulletHeight = 16;
-    int initialVelocity = 20;
+    float initialVelocity = 20;
     Handler handler;
 
     public void setValues(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
@@ -28,6 +28,11 @@ public class Bullet extends GameObject {
     public Bullet(ObjectId id){
         super(id);
     }
+
+    public void setInitialVelocity(float initialVelocity) {
+        this.initialVelocity = initialVelocity;
+    }
+
     //public Bullet(){
 //        this = new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
 //                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));

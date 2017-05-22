@@ -8,6 +8,9 @@ import java.util.LinkedList;
  */
 public class EnemyTank extends Tank {
     PlayerTank tankData;
+    float gravity = -.3f;
+    float velocity = getGun().getBullets().peek().initialVelocity;
+    // (Math.asin(gravity * dx/(velocity*velocity)))/2
     public EnemyTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
         super(x,y,id, handler, cam, game);
         this.setHealth(1);
@@ -19,6 +22,8 @@ public class EnemyTank extends Tank {
             h.removeObject(this);
             h.removeObject(this.gun);
         }
+        aim();
+        //fire();
     }
 
     @Override
@@ -28,26 +33,40 @@ public class EnemyTank extends Tank {
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.GREEN);
-        g2D.draw(getBounds());
+        //g2D.draw(getBounds());
     }
-    public void aim(PlayerTank tank){
+    public void aim(){
         //Get PlayerTank position
-        float playerX = tank.getX();
-        float playerY = tank.getY();
+        float playerX = 0;
+        float playerY = 0;
+        int time = 3;
+        for(GameObject o : h.object){
+            if(o.getID() == ObjectId.PlayerTank){
+                playerX = o.x;
+                playerY = o.y;
+            }
+        }
         float dx = playerX - x;
-        float dy = playerY - y;
-        float distance = (float) Math.sqrt(dx*dx + dy * dy);
-        float displacement;
-        if(playerX < x)
-            displacement = -dx;
-        else
-            displacement = dx;
-        float angleToEnemy = (float) Math.toDegrees(Math.atan(dy/dx));
-        float targetAngle = 180 - angleToEnemy;
+        float dy = y - playerY;
+        float angle;
+        if(y == playerY){
+             angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2));
+             gun.setAngle(angle);
+             fire();
+        }
+//        if (y < playerY && dx < 0){
+//            angle = 10;
+//            float t = (float)Math.sqrt(2 * dy / gravity);
+//            gun.setAngle(angle);
+//            gun.getBullets().peek().setInitialVelocity(dx / t);
+//            fire();
+//
+//        }
+
 
     }
     public void fire(){
-        getGun().fireToPlayer(h);
+        getGun().fire(h);
     }
 
 }
