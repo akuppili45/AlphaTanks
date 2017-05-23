@@ -15,6 +15,7 @@ public class Tank extends GameObject
     Tank enemyTankData;
     Camera cam;
     Game game;
+    float gravity = -.3f;
     public Tank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game) {
         super(x, y, id);
         h = handler;
@@ -35,6 +36,7 @@ public class Tank extends GameObject
         collision();
         if(getHealth() == 0)
             h.removeObject(this);
+
     }
 
     @Override
@@ -117,3 +119,4 @@ public class Tank extends GameObject
 
 }
 }
+
