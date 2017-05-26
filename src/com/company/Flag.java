@@ -38,7 +38,7 @@ public class Flag extends GameObject
         return null;
     }
     public Rectangle getBounds() {
-        return new Rectangle((int) ((int)x + (bulletWidth/2)-((bulletWidth/2)/2)),(int) ((int)y + (bulletHeight/2)),(int)bulletWidth/2,(int)bulletHeight/2);
+        return new Rectangle((int)x + (bulletWidth/2)-((bulletWidth/2)/2), (int)y + (bulletHeight/2), bulletWidth /2, bulletHeight /2);
     }
 
 }

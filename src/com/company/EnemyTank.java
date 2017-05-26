@@ -29,7 +29,7 @@ public class EnemyTank extends Tank {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect((int) x, (int) y, (int)width, (int)height);
+        g.fillRect((int) x, (int) y, width, height);
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.GREEN);

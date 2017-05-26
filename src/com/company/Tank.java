@@ -48,7 +48,7 @@ public class Tank extends GameObject
     public void render(Graphics g) {
 
             g.setColor(Color.BLUE);
-            g.fillRect((int) x, (int) y, (int) width, (int) height);
+            g.fillRect((int) x, (int) y, width, height);
             gun.render(g);
             Graphics2D g2D = (Graphics2D)g;
             g2D.setStroke(new BasicStroke(0));
@@ -63,7 +63,7 @@ public class Tank extends GameObject
         return gun;
     }
     public Rectangle getBounds(){
-        return new Rectangle((int) (x+5), (int) (y-10), (int)(width - 10), 5);
+        return new Rectangle((int) (x+5), (int) (y-10), width - 10, 5);
     }
     public Rectangle getBoundsLeft(){
         return new Rectangle((int)x, (int)y, width/32, height);

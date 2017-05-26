@@ -9,10 +9,10 @@ import java.util.LinkedList;
 public class Bullet extends GameObject {
     //Add Handler object, loop through handler, check enum if it's a tank,
     // and getBounds of this class intersects a bounds of a tempObject in the loop.
-    float gravity = -.3f;
+    private float gravity = -.3f;
     private Gun gun;
-    int bulletWidth = 16;
-    int bulletHeight = 16;
+    private int bulletWidth = 16;
+    private int bulletHeight = 16;
     float initialVelocity = 20;
     Handler handler;
 
@@ -65,16 +65,16 @@ public class Bullet extends GameObject {
 		return null;
 	}
     public Rectangle getBounds() {
-        return new Rectangle((int) ((int)x + (bulletWidth/2)-((bulletWidth/2)/2)),(int) ((int)y + (bulletHeight/2)),(int)bulletWidth/2,(int)bulletHeight/2);
+        return new Rectangle((int)x + (bulletWidth/2)-((bulletWidth/2)/2), (int)y + (bulletHeight/2), bulletWidth /2, bulletHeight /2);
     }
     public Rectangle getBoundsTop() {
-        return new Rectangle((int)((int)x+(bulletWidth/2)-((bulletWidth/2)/2)),(int)y,(int)bulletWidth/2, (int)bulletHeight/2);
+        return new Rectangle((int)x+(bulletWidth/2)-((bulletWidth/2)/2),(int)y, bulletWidth /2, bulletHeight /2);
     }
     public Rectangle getBoundsRight() {
-        return new Rectangle((int) ((int)x+bulletWidth-5), (int)y+5,(int)5,(int)bulletHeight-10);
+        return new Rectangle((int)x+bulletWidth-5, (int)y+5, 5, bulletHeight -10);
     }
     public Rectangle getBoundsLeft() {
-        return new Rectangle((int)x,(int)y+5,(int)5,(int)bulletHeight-10);
+        return new Rectangle((int)x,(int)y+5, 5, bulletHeight -10);
     }
     public boolean hitTank(){
         for(GameObject tempObject : handler.object){
