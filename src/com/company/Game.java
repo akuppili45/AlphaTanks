@@ -12,10 +12,12 @@ public class Game extends Canvas implements Runnable
     private boolean running = false;
     private Thread thread;
     public static int WIDTH,HEIGHT;
-    private BufferedImage level = null;
+    int currentLevel = 1;
+
     //Objects
     Handler handler;
     Camera cam;
+
     public synchronized void start(){
         if(running)
             return;
@@ -23,12 +25,28 @@ public class Game extends Canvas implements Runnable
         thread= new Thread(this);
         thread.start();
     }
-    private void init(){
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void init(){
+
         BufferedImageLoader loader = new BufferedImageLoader();
-        level = loader.loadImage("/level2.png");//loading the level
+
+        BufferedImage level = null;
         handler = new Handler();
         cam = new Camera(0,0);
-        loadImageLevel(level );
+        switch (currentLevel){
+            case 1:
+                level = loader.loadImage("/level2.png");
+                break;
+            case 2:
+                level = loader.loadImage("/secondlevel.png");
+        }
+        //handler.decideLevel();//decide which level
+        loadImageLevel(level );//actually loads level
+
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
 
@@ -106,7 +124,6 @@ public class Game extends Canvas implements Runnable
         int xx;
         int yy ;
         PlayerTank pT;
-        //EnemyTank eT = new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler);
         System.out.println("width, height" + w + "," + h);
         for( xx = 0; xx < h; xx++){
             for( yy = 0; yy < w; yy++){
@@ -118,19 +135,23 @@ public class Game extends Canvas implements Runnable
                 if(red == 255 && green == 255 && blue == 255)
                     handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
                 if(red == 0 && green == 0 && blue == 255) {
-                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler);
+                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler, cam, this);
                     handler.addObject(pT);
                 }
                 if(red == 255 && green == 0 && blue == 0){
-                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler));
+                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler, cam, this));
                 }
                 if(red == 255 && green == 216 && blue == 0){
                     handler.addObject(new Flag(xx*32, yy*32,ObjectId.Flag));
                 }
+                if(red == 0 && green == 255 && blue == 33)
+                    handler.addObject(new PowerUp(xx*32, yy*32, ObjectId.PowerUp, handler));
             }
         }
     }
-
+    public void setCurrentLevel(int level){
+        currentLevel = level;
+    }
     public static void main(String[] args) {
         //new Window(800,600,"Alpha Tanks", new Game());
         new Window(1800,900,"Alpha Tanks", new Game());

@@ -10,8 +10,8 @@ import java.util.Stack;
  */
 public class PlayerTank extends Tank
 {
-    public PlayerTank(float x, float y, ObjectId id, Handler handler){
-        super(x,y,id, handler);
+    public PlayerTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
+        super(x,y,id, handler,cam, game);
     }
     @Override
     public void tick(LinkedList<GameObject> object) {

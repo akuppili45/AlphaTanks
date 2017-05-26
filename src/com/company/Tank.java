@@ -13,7 +13,10 @@ public class Tank extends GameObject
     Gun gun;
     private int health = 3;
     Tank enemyTankData;
-    public Tank(float x, float y, ObjectId id, Handler handler) {
+    Camera cam;
+    Game game;
+    float gravity = -.3f;
+    public Tank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game) {
         super(x, y, id);
         h = handler;
         //gun = new Gun(400,180,ObjectId.Gun);
@@ -21,6 +24,8 @@ public class Tank extends GameObject
         h.addObject(this);
         gun = new Gun(x+30,y,ObjectId.Gun, 45, this, h);
         h.addObject(gun);
+        this.cam = cam;
+        this.game = game;
 
     }
     @Override
@@ -31,6 +36,7 @@ public class Tank extends GameObject
         collision();
         if(getHealth() == 0)
             h.removeObject(this);
+
     }
 
     @Override
@@ -92,10 +98,25 @@ public class Tank extends GameObject
             }
             else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.Flag){
                 Flag f = (Flag)a;
-                if(getBoundsRight().intersects(f.getBounds()))
+                if(getBoundsRight().intersects(f.getBounds())) {
                     h.clearLevel();
+                    cam.setX(0);
+                    game.setCurrentLevel(2);
+                    game.init();
+                }
+            }
+            else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.PowerUp){
+                PowerUp p = (PowerUp)a;
+                if(getBoundsRight().intersects(p.getBounds())){
+                    p.setRemove(true);
+                    for(int i = 0; i < 10; i++)
+                        getGun().getBullets().push(new Bullet(ObjectId.Bullet));
+
+                }
+
             }
         }
 
 }
 }
+

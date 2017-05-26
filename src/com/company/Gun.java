@@ -9,16 +9,20 @@ import java.util.Stack;
  */
 public class Gun extends GameObject
 {
-    Stack<Bullet> bullets;
+    Stack<Bullet> bullets  = new Stack<>();
     private float angle;
     private Tank tankID;
-public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
+    Handler h;
+    boolean filledMagazine = false;
+    private int numBullets = 10;
+    public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
-        //this.bullets = new Stack<Bullet>();
         angle = gunAngle;
         this.tankID = tank;
-
-
+        h = handler;
+        for(int i = 0; i < numBullets; i++){
+            bullets.push(new Bullet(ObjectId.Bullet));
+        }
     }
 
     @Override
@@ -53,7 +57,23 @@ public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler han
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
-    public void fire(){
+
+    public void setFilledMagazine(boolean filledMagazine) {
+        this.filledMagazine = filledMagazine;
+    }
+
+    //For PlayerTank only. Make another method similar to this one but applies only to EnemyTank.
+    public void fire(Handler h){
+        if(bullets.size() != 0) {
+            Bullet b = bullets.pop();
+            b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
+                    (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
+
+            h.addObject(b);
+        }
+
+    }
+    public void fireToPlayer(Handler h){
 
     }
     public void rotateIncreaseAngle(){
@@ -65,4 +85,5 @@ public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler han
     public Stack<Bullet> getBullets(){
         return bullets;
     }
+
 }
