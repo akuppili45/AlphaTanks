@@ -3,26 +3,25 @@ package com.company;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
 /**
  * Created by akupp_000 on 5/5/2017.
  */
-public class Game extends Canvas implements Runnable
-{
+public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = -6261436164361361187L;
     private boolean running = false;
-    private Thread thread;
-    public static int WIDTH,HEIGHT;
-    int currentLevel = 1;
+    public static int WIDTH, HEIGHT;
+    private int currentLevel = 1;
 
     //Objects
     Handler handler;
     Camera cam;
 
-    public synchronized void start(){
-        if(running)
+    public synchronized void start() {
+        if (running)
             return;
         running = true;
-        thread= new Thread(this);
+        Thread thread = new Thread(this);
         thread.start();
     }
 
@@ -30,14 +29,14 @@ public class Game extends Canvas implements Runnable
         return currentLevel;
     }
 
-    public void init(){
+    public void init() {
 
         BufferedImageLoader loader = new BufferedImageLoader();
 
         BufferedImage level = null;
         handler = new Handler();
-        cam = new Camera(0,0);
-        switch (currentLevel){
+        cam = new Camera(0, 0);
+        switch (currentLevel) {
             case 1:
                 level = loader.loadImage("/level2.png");
                 break;
@@ -45,21 +44,16 @@ public class Game extends Canvas implements Runnable
                 level = loader.loadImage("/secondlevel.png");
         }
         //handler.decideLevel();//decide which level
-        loadImageLevel(level );//actually loads level
+        loadImageLevel(level);//actually loads level
 
         WIDTH = getWidth();//Canvas width
         HEIGHT = getHeight();//Canvas height
 
-
-//        PlayerTank pT = new PlayerTank(120, 700-32, ObjectId.PlayerTank, handler);
-//        EnemyTank eT = new EnemyTank(1100,700-32,ObjectId.EnemyTank, handler, pT);
-//        handler.addObject(new Platform(0, 700, ObjectId.Platform, this));
-//        handler.addObject(pT);
-//        handler.addObject(eT);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(new MouseInput());
 
     }
+
     @Override
     public void run() {
         init();
@@ -71,11 +65,11 @@ public class Game extends Canvas implements Runnable
         long timer = System.currentTimeMillis();
         int updates = 0;
         int frames = 0;
-        while(running){
+        while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while(delta >= 1){
+            while (delta >= 1) {
                 tick();
                 updates++;
                 delta--;
@@ -83,7 +77,7 @@ public class Game extends Canvas implements Runnable
             render();
             frames++;
 
-            if(System.currentTimeMillis() - timer > 1000){
+            if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 //System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
@@ -91,69 +85,74 @@ public class Game extends Canvas implements Runnable
             }
         }
     }
-    private void tick(){
+
+    private void tick() {
         handler.tick();
-        for(GameObject a : handler.object){
-            if(a.getID() == ObjectId.PlayerTank)
+        for (GameObject a : handler.object) {
+            if (a.getID() == ObjectId.PlayerTank)
                 cam.tick(a);
         }
     }
+
     //Called in the game loop in this class.
-    private void render(){
+    private void render() {
         BufferStrategy bs = this.getBufferStrategy();
-        if(bs == null){
+        if (bs == null) {
             this.createBufferStrategy(3);
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        Graphics2D g2D = (Graphics2D)g;
+        Graphics2D g2D = (Graphics2D) g;
         /////////////////////////////////
         //Draw Everything in here
         //g.setColor(Color.GRAY);
-        g.fillRect(0,0,getWidth(),getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
-        g2D.translate(cam.getX(),cam.getY());
+        g.fillRect(0, 0, getWidth(), getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
+        g2D.translate(cam.getX(), cam.getY());
         handler.render(g);
-        g2D.translate(-cam.getX(),-cam.getY());
+        g2D.translate(-cam.getX(), -cam.getY());
         /////////////////////
         g.dispose();
         bs.show();
     }
-    private void loadImageLevel(BufferedImage image){
+
+    private void loadImageLevel(BufferedImage image) {
         int w = image.getWidth();
         int h = image.getHeight();
         int xx;
-        int yy ;
+        int yy;
         PlayerTank pT;
         System.out.println("width, height" + w + "," + h);
-        for( xx = 0; xx < h; xx++){
-            for( yy = 0; yy < w; yy++){
+        for (xx = 0; xx < h; xx++) {
+            for (yy = 0; yy < w; yy++) {
 
-                int pixel = image.getRGB(xx,yy);
+                int pixel = image.getRGB(xx, yy);
                 int red = (pixel >> 16) & 0xff;
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
-                if(red == 255 && green == 255 && blue == 255)
+                if (red == 255 && green == 255 && blue == 255)
                     handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
-                if(red == 0 && green == 0 && blue == 255) {
-                    pT = new PlayerTank(xx*32, yy*32, ObjectId.PlayerTank, handler, cam, this);
+                if (red == 0 && green == 0 && blue == 255) {
+                    pT = new PlayerTank(xx * 32, yy * 32, ObjectId.PlayerTank, handler, cam, this);
                     handler.addObject(pT);
                 }
-                if(red == 255 && green == 0 && blue == 0){
-                    handler.addObject(new EnemyTank(xx*32, yy*32,ObjectId.EnemyTank, handler, cam, this));
+                if (red == 255 && green == 0 && blue == 0) {
+                    handler.addObject(new EnemyTank(xx * 32, yy * 32, ObjectId.EnemyTank, handler, cam, this));
                 }
-                if(red == 255 && green == 216 && blue == 0){
-                    handler.addObject(new Flag(xx*32, yy*32,ObjectId.Flag));
+                if (red == 255 && green == 216 && blue == 0) {
+                    handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
                 }
-                if(red == 0 && green == 255 && blue == 33)
-                    handler.addObject(new PowerUp(xx*32, yy*32, ObjectId.PowerUp, handler));
+                if (red == 0 && green == 255 && blue == 33)
+                    handler.addObject(new PowerUp(xx * 32, yy * 32, ObjectId.PowerUp, handler));
             }
         }
     }
-    public void setCurrentLevel(int level){
+
+    public void setCurrentLevel(int level) {
         currentLevel = level;
     }
+
     public static void main(String[] args) {
         //new Window(800,600,"Alpha Tanks", new Game());
-        new Window(1800,900,"Alpha Tanks", new Game());
+        new Window(1800, 900, "Alpha Tanks", new Game());
     }
 }

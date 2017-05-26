@@ -5,5 +5,5 @@ package com.company;
  */
 public enum ObjectId
 {
-    PlayerTank(), Platform(), Gun(), Bullet(), EnemyTank(), Flag(), PowerUp();
+    PlayerTank(), Platform(), Gun(), Bullet(), EnemyTank(), Flag(), PowerUp()
 }

@@ -9,11 +9,10 @@ import java.util.Stack;
  */
 public class Gun extends GameObject
 {
-    Stack<Bullet> bullets  = new Stack<>();
+    private Stack<Bullet> bullets  = new Stack<>();
     private float angle;
     private Tank tankID;
-    Handler h;
-    boolean filledMagazine = false;
+    private Handler h;
     private int numBullets = 10;
     public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
@@ -58,10 +57,6 @@ public class Gun extends GameObject
         return tankID.isPlayer();
     }
 
-    public void setFilledMagazine(boolean filledMagazine) {
-        this.filledMagazine = filledMagazine;
-    }
-
     //For PlayerTank only. Make another method similar to this one but applies only to EnemyTank.
     public void fire(Handler h){
         if(bullets.size() != 0) {
@@ -73,9 +68,7 @@ public class Gun extends GameObject
         }
 
     }
-    public void fireToPlayer(Handler h){
 
-    }
     public void rotateIncreaseAngle(){
         angle += 10;
     }
