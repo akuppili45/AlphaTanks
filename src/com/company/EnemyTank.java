@@ -68,12 +68,36 @@ public class EnemyTank extends Tank {
         float playerY = tank.getY();
         float enemyX = this.x;
         float enemyY = this.y;
-        if(enemyY == playerY) {
-            if (playerX < enemyX)
+        if (playerX < enemyX)
                 this.setVelX(-3);
-            else
+        else
                 this.setVelX(3);
+
+    }
+    public void collision(){
+        for(GameObject a : h.object) {
+            if (a.getID() == ObjectId.Platform) {
+                Platform block = (Platform) a;
+                if(getBoundsLeft().intersects(block.getBounds())){
+                    x = block.getX() + 40;
+                    setVelX(0);
+
+                }
+                else if (getBoundsRight().intersects(block.getBounds())){
+                    x = block.getX() - width;
+                }
+
+            }
+            else if (a.getID() == ObjectId.PlayerTank){
+                    PlayerTank p = (PlayerTank)a;
+                    if(this.getBoundsLeft().intersects(p.getBoundsRight())){
+                        setX(p.getX() + p.width);
+                    }
+            }
+
+
         }
+
     }
 
 }
