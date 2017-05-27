@@ -13,6 +13,9 @@ public class PlayerTank extends Tank
     public PlayerTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
         super(x,y,id, handler,cam, game);
     }
+    public PlayerTank(ObjectId id){
+        super(id);
+    }
     @Override
     public void tick(LinkedList<GameObject> object) {
         super.tick(object);

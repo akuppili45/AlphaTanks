@@ -28,6 +28,9 @@ public class Tank extends GameObject
         this.game = game;
 
     }
+    public Tank(ObjectId id){
+        super(id);
+    }
     @Override
     public void tick(LinkedList<GameObject> object) {
 
