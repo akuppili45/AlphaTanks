@@ -97,9 +97,12 @@ public class Game extends Canvas implements Runnable {
             }
             else if(a.getID() == ObjectId.EnemyTank){
                 e = (EnemyTank)a;
-                if(e.getY() == p.getY()) {
+                //x = screenwidth - tankwidth
+                // if(e.getX() > 1800 - e.width && e.getY() == p.getY())
+                if( e.getY() == p.getY()) {
                     e.moveToPlayer(p);
                 }
+                //System.out.println(e.getX());
 
             }
 

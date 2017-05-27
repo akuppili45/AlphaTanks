@@ -38,6 +38,9 @@ public class EnemyTank extends Tank {
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.GREEN);
+        g2D.setStroke(new BasicStroke(0));
+        g2D.draw(getBoundsLeft());
+        g2D.draw(getBoundsRight());
         //g2D.draw(getBounds());
     }
     public void aim(){
@@ -64,39 +67,21 @@ public class EnemyTank extends Tank {
         getGun().fire(h);
     }
     public void moveToPlayer(PlayerTank tank){
-        float playerX = tank.getX();
+        float playerRightX = (float) tank.getBoundsRight().getX();
         float playerY = tank.getY();
         float enemyX = this.x;
         float enemyY = this.y;
-        if (playerX < enemyX)
+        if(!tank.rightCrashed) {
+            if (playerRightX < enemyX)
                 this.setVelX(-3);
-        else
+            else
                 this.setVelX(3);
+        }
+
 
     }
     public void collision(){
-        for(GameObject a : h.object) {
-            if (a.getID() == ObjectId.Platform) {
-                Platform block = (Platform) a;
-                if(getBoundsLeft().intersects(block.getBounds())){
-                    x = block.getX() + 40;
-                    setVelX(0);
-
-                }
-                else if (getBoundsRight().intersects(block.getBounds())){
-                    x = block.getX() - width;
-                }
-
-            }
-            else if (a.getID() == ObjectId.PlayerTank){
-                    PlayerTank p = (PlayerTank)a;
-                    if(this.getBoundsLeft().intersects(p.getBoundsRight())){
-                        setX(p.getX() + p.width);
-                    }
-            }
-
-
-        }
+        //super.collision();
 
     }
 

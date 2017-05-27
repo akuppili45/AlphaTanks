@@ -15,6 +15,10 @@ public class Tank extends GameObject
     Tank enemyTankData;
     Camera cam;
     Game game;
+    boolean rightCrashed = false;
+
+
+
     float gravity = -.3f;
     public Tank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game) {
         super(x, y, id);
@@ -118,8 +122,29 @@ public class Tank extends GameObject
                 }
 
             }
+            else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.EnemyTank){
+                EnemyTank enemy = (EnemyTank)a;
+                if(getBoundsRight().intersects(enemy.getBoundsLeft())){
+                   System.out.println("kjkl;;jkl");
+                    rightCrashed = true;
+                    enemy.setX(x + width);
+                    enemy.setVelX(0);
+                    
+                }
+            }
+//            else if (this.getID() == ObjectId.EnemyTank && a.getID() == ObjectId.PlayerTank){
+//                PlayerTank playerTank = (PlayerTank)a;
+//                System.out.println("hhhhhhhhhhhhhh");
+//                if(getBoundsLeft().intersects(playerTank.getBoundsRight())){
+//                    x = x + 10;
+//                }
+//            }
         }
 
-}
+
+    }
+    public boolean isRightCrashed() {
+        return rightCrashed;
+    }
 }
 
