@@ -84,7 +84,7 @@ public class Tank extends GameObject
     public void setHealth(int health) {
         this.health = health;
     }
-    private void collision(){
+    public void collision(){
         for(GameObject a : h.object){
             if(a.getID() == ObjectId.Platform){
                 Platform block = (Platform)a;

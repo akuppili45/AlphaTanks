@@ -97,8 +97,10 @@ public class Game extends Canvas implements Runnable {
             }
             else if(a.getID() == ObjectId.EnemyTank){
                 e = (EnemyTank)a;
-                //System.out.println(e.toString());
-                e.moveToPlayer(p);
+                if(e.getY() == p.getY()) {
+                    e.moveToPlayer(p);
+                }
+
             }
 
         }
