@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * Created by akupp_000 on 5/8/2017.
  */
 public class EnemyTank extends Tank {
-    PlayerTank tankData;
+    //PlayerTank tankData;
     float gravity = -.3f;
     float velocity = getGun().getBullets().peek().initialVelocity;
     // (Math.asin(gravity * dx/(velocity*velocity)))/2
@@ -16,20 +16,25 @@ public class EnemyTank extends Tank {
         this.setHealth(1);
         //tankData = tank;
     }
+    public EnemyTank(ObjectId id){
+        super(id);
+    }
     @Override
     public void tick(LinkedList<GameObject> object) {
         if(getHealth() == 0) {
             h.removeObject(this);
             h.removeObject(this.gun);
         }
-        aim();
+        x += velX;
+        //aim();
         //fire();
+
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect((int) x, (int) y, (int)width, (int)height);
+        g.fillRect((int) x, (int) y, width, height);
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.GREEN);
@@ -54,19 +59,21 @@ public class EnemyTank extends Tank {
              gun.setAngle(angle);
              fire();
         }
-//        if (y < playerY && dx < 0){
-//            angle = 10;
-//            float t = (float)Math.sqrt(2 * dy / gravity);
-//            gun.setAngle(angle);
-//            gun.getBullets().peek().setInitialVelocity(dx / t);
-//            fire();
-//
-//        }
-
-
     }
     public void fire(){
         getGun().fire(h);
+    }
+    public void moveToPlayer(PlayerTank tank){
+        float playerX = tank.getX();
+        float playerY = tank.getY();
+        float enemyX = this.x;
+        float enemyY = this.y;
+        if(enemyY == playerY) {
+            if (playerX < enemyX)
+                this.setVelX(-3);
+            else
+                this.setVelX(3);
+        }
     }
 
 }
