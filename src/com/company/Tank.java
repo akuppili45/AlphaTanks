@@ -125,20 +125,12 @@ public class Tank extends GameObject
             else if(this.getID() == ObjectId.PlayerTank && a.getID() == ObjectId.EnemyTank){
                 EnemyTank enemy = (EnemyTank)a;
                 if(getBoundsRight().intersects(enemy.getBoundsLeft())){
-                   System.out.println("kjkl;;jkl");
                     rightCrashed = true;
-                    enemy.setVelX(0);
+                    enemy.setVelX(3);
                     x = enemy.getX() - 70;
 
                 }
             }
-//            else if (this.getID() == ObjectId.EnemyTank && a.getID() == ObjectId.PlayerTank){
-//                PlayerTank playerTank = (PlayerTank)a;
-//                System.out.println("hhhhhhhhhhhhhh");
-//                if(getBoundsLeft().intersects(playerTank.getBoundsRight())){
-//                    x = x + 10;
-//                }
-//            }
         }
 
 

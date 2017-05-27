@@ -25,6 +25,7 @@ public class EnemyTank extends Tank {
             h.removeObject(this);
             h.removeObject(this.gun);
         }
+        gun.setX(x+30);
         x += velX;
         //aim();
         //fire();
@@ -68,6 +69,7 @@ public class EnemyTank extends Tank {
     }
     public void moveToPlayer(PlayerTank tank){
         float playerRightX = (float) tank.getBoundsRight().getX();
+        float playerX = tank.getX();
         float playerY = tank.getY();
         float enemyX = this.x;
         float enemyY = this.y;
