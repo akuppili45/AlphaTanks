@@ -22,7 +22,7 @@ public class KeyInput extends KeyAdapter {
             if (tempObject.getID() == ObjectId.PlayerTank) { //Checks if the id is a player
                 PlayerTank p = (PlayerTank)tempObject;
                 if (key == KeyEvent.VK_D) {
-                    p.setVelX(velocity);
+                        p.setVelX(velocity);
                 }
                     //System.out.println("Tank Pos: " + tempObject.getX() + "," + tempObject.getY());
                 if (key == KeyEvent.VK_A)
