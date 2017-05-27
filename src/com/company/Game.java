@@ -100,7 +100,7 @@ public class Game extends Canvas implements Runnable {
                 //x = screenwidth - tankwidth
                 // if(e.getX() > 1800 - e.width && e.getY() == p.getY())
                 if( e.getY() == p.getY()) {
-                    //e.moveToPlayer(p);
+                    e.moveToPlayer(p);
                 }
                 //System.out.println(e.getX());
 

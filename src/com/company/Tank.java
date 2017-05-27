@@ -126,9 +126,8 @@ public class Tank extends GameObject
                 EnemyTank enemy = (EnemyTank)a;
                 if(getBoundsRight().intersects(enemy.getBoundsLeft())){
                    System.out.println("kjkl;;jkl");
-//                    rightCrashed = true;
-//                    enemy.setX(x + width);
-//                    enemy.setVelX(0);
+                    rightCrashed = true;
+                    enemy.setVelX(0);
                     x = enemy.getX() - 70;
 
                 }
