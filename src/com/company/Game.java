@@ -88,9 +88,19 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
+        EnemyTank e ;
         for (GameObject a : handler.object) {
-            if (a.getID() == ObjectId.PlayerTank)
+            if (a.getID() == ObjectId.PlayerTank){
+                p = (PlayerTank)a;
                 cam.tick(a);
+            }
+            else if(a.getID() == ObjectId.EnemyTank){
+                e = (EnemyTank)a;
+                //System.out.println(e.toString());
+                e.moveToPlayer(p);
+            }
+
         }
     }
 
