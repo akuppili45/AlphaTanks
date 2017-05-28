@@ -62,11 +62,10 @@ public class Tank extends GameObject
             g2D.setColor(Color.MAGENTA);
             g2D.draw(getBoundsLeft());
             g2D.draw(getBoundsRight());
-            Rectangle rectangle = new Rectangle(900,(int)y,46,34);
-            //System.out.println(Math.abs(x-900));
+            //Rectangle rectangle = new Rectangle(900,(int)y,46,34);
 
-            g2D.setStroke(new BasicStroke(0));
-            g2D.draw(rectangle);
+//            g2D.setStroke(new BasicStroke(0));
+//            g2D.draw(rectangle);
     }
     public boolean isPlayer(){
         return this.getID() == ObjectId.PlayerTank;
