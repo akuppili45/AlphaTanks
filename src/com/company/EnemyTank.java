@@ -27,6 +27,7 @@ public class EnemyTank extends Tank {
         }
         gun.setX(x+30);
         x += velX;
+        //System.out.println(x);
         //aim();
         //fire();
 
@@ -79,8 +80,14 @@ public class EnemyTank extends Tank {
             else
                 this.setVelX(3);
         }
+        if(Math.abs(playerX - enemyX) == 676){
+            this.setVelX(0);
+        }
 
 
+    }
+    public boolean isSeen(){
+        return false;
     }
     public void collision(){
         //super.collision();
