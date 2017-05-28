@@ -10,6 +10,7 @@ import java.util.Stack;
 public class Gun extends GameObject
 {
     private Stack<Bullet> bullets  = new Stack<>();
+    private Stack<Bullet> enemyBullets = new Stack<>();
     private float angle;
     private Tank tankID;
     private Handler h;
@@ -67,6 +68,12 @@ public class Gun extends GameObject
             h.addObject(b);
         }
 
+    }
+    public void enemyGunFire(Handler h){
+            Bullet b = new Bullet(ObjectId.Bullet);
+            b.setValues(((float) ((x) + getRadius())), (float)
+                    (y ), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
+            h.addObject(b);
     }
 
     public void rotateIncreaseAngle(){

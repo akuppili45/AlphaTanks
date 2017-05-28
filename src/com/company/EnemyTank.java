@@ -25,7 +25,9 @@ public class EnemyTank extends Tank {
             h.removeObject(this);
             h.removeObject(this.gun);
         }
+        gun.setX(x+30);
         x += velX;
+        //System.out.println(x);
         //aim();
         //fire();
 
@@ -38,6 +40,9 @@ public class EnemyTank extends Tank {
         gun.render(g);
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.GREEN);
+        g2D.setStroke(new BasicStroke(0));
+        g2D.draw(getBoundsLeft());
+        g2D.draw(getBoundsRight());
         //g2D.draw(getBounds());
     }
     public void aim(){
@@ -64,40 +69,30 @@ public class EnemyTank extends Tank {
         getGun().fire(h);
     }
     public void moveToPlayer(PlayerTank tank){
+        float playerRightX = (float) tank.getBoundsRight().getX();
         float playerX = tank.getX();
         float playerY = tank.getY();
         float enemyX = this.x;
         float enemyY = this.y;
-        if (playerX < enemyX)
+        if(!tank.rightCrashed) {
+            if (playerRightX < enemyX)
                 this.setVelX(-3);
-        else
+            else
                 this.setVelX(3);
-
-    }
-    public void collision(){
-        for(GameObject a : h.object) {
-            if (a.getID() == ObjectId.Platform) {
-                Platform block = (Platform) a;
-                if(getBoundsLeft().intersects(block.getBounds())){
-                    x = block.getX() + 40;
-                    setVelX(0);
-
-                }
-                else if (getBoundsRight().intersects(block.getBounds())){
-                    x = block.getX() - width;
-                }
-
-            }
-            else if (a.getID() == ObjectId.PlayerTank){
-                    PlayerTank p = (PlayerTank)a;
-                    if(this.getBoundsLeft().intersects(p.getBoundsRight())){
-                        setX(p.getX() + p.width);
-                    }
-            }
-
+        }
+        float dx = Math.abs(playerX - enemyX);
+        if(Math.abs(playerX - enemyX) < 686 && Math.abs(playerX - enemyX) > 656 && getVelX() < 0){
+            //System.out.println("lksadjfkl;j");
+            this.setVelX(0);
+            //Aim and fire
+            float angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2));
+            gun.setAngle(60);
+            gun.enemyGunFire(h);
+            //fire();
+            //System.out.println(velocity);
 
         }
 
-    }
 
+    }
 }

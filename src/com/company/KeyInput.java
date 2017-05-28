@@ -20,11 +20,13 @@ public class KeyInput extends KeyAdapter {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
             if (tempObject.getID() == ObjectId.PlayerTank) { //Checks if the id is a player
-                if (key == KeyEvent.VK_D)
-                    tempObject.setVelX(velocity);
+                PlayerTank p = (PlayerTank)tempObject;
+                if (key == KeyEvent.VK_D) {
+                        p.setVelX(velocity);
+                }
                     //System.out.println("Tank Pos: " + tempObject.getX() + "," + tempObject.getY());
                 if (key == KeyEvent.VK_A)
-                    tempObject.setVelX(-velocity);
+                    p.setVelX(-velocity);
                     //System.out.println("Tank Pos: " + tempObject.getX() + "," + tempObject.getY());
 
 

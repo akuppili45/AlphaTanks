@@ -94,12 +94,18 @@ public class Game extends Canvas implements Runnable {
             if (a.getID() == ObjectId.PlayerTank){
                 p = (PlayerTank)a;
                 cam.tick(a);
+                //System.out.println(a.getX());
             }
             else if(a.getID() == ObjectId.EnemyTank){
                 e = (EnemyTank)a;
-                if(e.getY() == p.getY()) {
+                //x = screenwidth - tankwidth
+                // if(e.getX() > 1800 - e.width && e.getY() == p.getY())
+                if( e.getY() == p.getY()) {
+//                    System.out.println("Player: " + p.x);
+//                    System.out.println("Enemy: " + e.x);
                     e.moveToPlayer(p);
                 }
+                //System.out.println(e.getX());
 
             }
 
@@ -149,6 +155,7 @@ public class Game extends Canvas implements Runnable {
                 }
                 if (red == 255 && green == 0 && blue == 0) {
                     handler.addObject(new EnemyTank(xx * 32, yy * 32, ObjectId.EnemyTank, handler, cam, this));
+                    //System.out.println(xx);
                 }
                 if (red == 255 && green == 216 && blue == 0) {
                     handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
