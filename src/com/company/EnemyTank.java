@@ -80,7 +80,8 @@ public class EnemyTank extends Tank {
             else
                 this.setVelX(3);
         }
-        if(Math.abs(playerX - enemyX) == 676){
+        if(Math.abs(playerX - enemyX) < 686 && Math.abs(playerX - enemyX) > 656 && getVelX() < 0){
+            //System.out.println("lksadjfkl;j");
             this.setVelX(0);
         }
 
@@ -89,9 +90,6 @@ public class EnemyTank extends Tank {
     public boolean isSeen(){
         return false;
     }
-    public void collision(){
-        //super.collision();
 
-    }
 
 }
