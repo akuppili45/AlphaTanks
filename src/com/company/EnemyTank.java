@@ -80,16 +80,19 @@ public class EnemyTank extends Tank {
             else
                 this.setVelX(3);
         }
+        float dx = Math.abs(playerX - enemyX);
         if(Math.abs(playerX - enemyX) < 686 && Math.abs(playerX - enemyX) > 656 && getVelX() < 0){
             //System.out.println("lksadjfkl;j");
             this.setVelX(0);
+            //Aim and fire
+            float angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2));
+            gun.setAngle(60);
+            gun.enemyGunFire(h);
+            //fire();
+            //System.out.println(velocity);
+
         }
 
 
     }
-    public boolean isSeen(){
-        return false;
-    }
-
-
 }
