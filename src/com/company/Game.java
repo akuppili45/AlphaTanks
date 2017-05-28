@@ -90,7 +90,8 @@ public class Game extends Canvas implements Runnable {
         handler.tick();
         PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
         EnemyTank e ;
-        for (GameObject a : handler.object) {
+        for (int i = 0; i < handler.object.size(); i++) {
+        	GameObject a = handler.object.get(i);
             if (a.getID() == ObjectId.PlayerTank){
                 p = (PlayerTank)a;
                 cam.tick(a);
