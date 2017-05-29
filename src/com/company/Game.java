@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
                 if( e.getY() == p.getY()) {
 //                    System.out.println("Player: " + p.x);
 //                    System.out.println("Enemy: " + e.x);
-                    e.moveToPlayer(p);
+                    e.horizontalEnemyAction(p);
                 }
                 //System.out.println(e.getX());
 

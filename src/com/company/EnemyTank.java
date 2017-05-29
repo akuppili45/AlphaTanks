@@ -68,7 +68,7 @@ public class EnemyTank extends Tank {
     public void fire(){
         getGun().fire(h);
     }
-    public void moveToPlayer(PlayerTank tank){
+    public void horizontalEnemyAction(PlayerTank tank){
         float playerRightX = (float) tank.getBoundsRight().getX();
         float playerX = tank.getX();
         float playerY = tank.getY();
