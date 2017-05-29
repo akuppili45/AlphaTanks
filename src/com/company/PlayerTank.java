@@ -10,7 +10,6 @@ import java.util.Stack;
  */
 public class PlayerTank extends Tank
 {
-	int tick = 0;
     public PlayerTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
         super(x,y,id, handler,cam, game);
     }
@@ -25,10 +24,5 @@ public class PlayerTank extends Tank
     @Override
     public void render(Graphics g) {
         super.render(g);
-    }
-    
-    public void inc()
-    {
-    	tick++;
     }
 }
