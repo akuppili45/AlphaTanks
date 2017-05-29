@@ -106,6 +106,9 @@ public class Game extends Canvas implements Runnable {
 //                    System.out.println("Enemy: " + e.x);
                     e.horizontalEnemyAction(p);
                 }
+                else{
+                	e.platformEnemyAction(p);
+                }
                 //System.out.println(e.getX());
 
             }
