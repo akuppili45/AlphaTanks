@@ -1,6 +1,8 @@
 package com.company;
 
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -11,10 +13,15 @@ public class Gun extends GameObject
 {
     private Stack<Bullet> bullets  = new Stack<>();
     private Stack<Bullet> enemyBullets = new Stack<>();
+    private ArrayList<Bullet> enemyBullets1 = new ArrayList<>();
     private float angle;
     private Tank tankID;
     private Handler h;
     private int numBullets = 10;
+    long timeLastFired = System.currentTimeMillis();
+
+
+
     public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
         angle = gunAngle;
@@ -22,6 +29,12 @@ public class Gun extends GameObject
         h = handler;
         for(int i = 0; i < numBullets; i++){
             bullets.push(new Bullet(ObjectId.Bullet));
+        }
+        for(int i = 0; i < 50; i++){
+            enemyBullets.push(new Bullet(ObjectId.Bullet));
+        }
+        for(int i = 0; i < 50; i++){
+            enemyBullets1.add(new Bullet(ObjectId.Bullet));
         }
     }
 
@@ -60,20 +73,33 @@ public class Gun extends GameObject
 
     //For PlayerTank only. Make another method similar to this one but applies only to EnemyTank.
     public void fire(Handler h){
-        if(bullets.size() != 0) {
+        long t = System.currentTimeMillis();
+        long temp = t-timeLastFired;
+        if(bullets.size() != 0 && (t-timeLastFired) > 1000) {
             Bullet b = bullets.pop();
             b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
-                    (y - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
+                    (y  - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
 
             h.addObject(b);
+            timeLastFired = t;
+           // System.out.println(b.getX());
         }
 
+
     }
+    //use a linked list of bullets instead of a stack. Get the first one to fire, and for the second, getPrevious and see where that is and then fire.
     public void enemyGunFire(Handler h){
-            Bullet b = new Bullet(ObjectId.Bullet);
-            b.setValues(((float) ((x) + getRadius())), (float)
-                    (y ), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
+        long t = System.currentTimeMillis();
+        long temp = t-timeLastFired;
+        if(enemyBullets.size() != 0 && (t-timeLastFired) > 5000) {
+            Bullet b = enemyBullets.pop();
+            b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
+                    (y  - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
+
             h.addObject(b);
+            timeLastFired = t;
+        }
+
     }
 
     public void rotateIncreaseAngle(){
@@ -84,6 +110,9 @@ public class Gun extends GameObject
     }
     public Stack<Bullet> getBullets(){
         return bullets;
+    }
+    public ArrayList<Bullet> getEnemyBullets1() {
+        return enemyBullets1;
     }
 
 }

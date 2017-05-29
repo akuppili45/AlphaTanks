@@ -15,7 +15,6 @@ public class Bullet extends GameObject {
     private int bulletHeight = 16;
     float initialVelocity = 20;
     Handler handler;
-
     public void setValues(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
 		//super(x, y, id);
         setX(x);
@@ -77,7 +76,8 @@ public class Bullet extends GameObject {
         return new Rectangle((int)x,(int)y+5, 5, bulletHeight -10);
     }
     public boolean hitTank(){
-        for(GameObject tempObject : handler.object){
+        for(int i = 0; i < handler.object.size(); i++){
+            GameObject tempObject = handler.object.get(i);
             if(tempObject.getID() == ObjectId.PlayerTank || tempObject.getID() == ObjectId.EnemyTank){
                 Tank t = (Tank)tempObject;
                 if(t.getBounds().intersects(getBounds())) {
@@ -89,7 +89,9 @@ public class Bullet extends GameObject {
         return false;
     }
     public boolean hitPlatform(){
-        for(GameObject tempObject : handler.object){
+      //  for(GameObject tempObject : handler.object){
+        for(int i = 0; i < handler.object.size(); i++){
+            GameObject tempObject = handler.object.get(i);
             if(tempObject.getID() == ObjectId.Platform){
                 Platform t = (Platform) tempObject;
                 if(t.getBounds().intersects(getBounds())) {

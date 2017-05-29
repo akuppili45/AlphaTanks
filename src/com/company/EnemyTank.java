@@ -85,7 +85,17 @@ public class EnemyTank extends Tank {
             this.setVelX(0);
             float angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2));
             gun.setAngle(160);
-            gun.fire(h);
+            //gun.fire(h);
+//            try {
+//                Thread.sleep(50);
+//                gun.enemyGunFire(h);
+//                //Thread.sleep(50);
+//            }
+//            catch (Exception e){
+//
+//            }
+            gun.enemyGunFire(h);
+
 
         }
 
