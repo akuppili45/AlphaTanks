@@ -26,6 +26,8 @@ public class KeyInput extends KeyAdapter {
                 PlayerTank p = (PlayerTank)tempObject;
                 if (key == KeyEvent.VK_D) {
                         p.setVelX(velocity);
+                        if(p.tick != 10)
+                        p.inc();
                 }
                     //System.out.println("Tank Pos: " + tempObject.getX() + "," + tempObject.getY());
                 if (key == KeyEvent.VK_A)
@@ -67,8 +69,11 @@ public class KeyInput extends KeyAdapter {
 
                     }
                 }
-
-
+                
+                if (key == KeyEvent.VK_ESCAPE)
+                {
+                	System.exit(0);
+                }
             }
         }
     }
