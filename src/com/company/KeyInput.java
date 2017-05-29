@@ -10,6 +10,7 @@ public class KeyInput extends KeyAdapter {
     Handler handler;
     float gunSpeed = 3.33f;
     float velocity = 5;
+    long timeLastFired = System.currentTimeMillis();
 
     public KeyInput(Handler handler) {
         this.handler = handler;
@@ -18,6 +19,8 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         for (int i = 0; i < handler.object.size(); i++) {
+            if(handler.object.get(i) == null)
+                continue;
             GameObject tempObject = handler.object.get(i);
             if (tempObject.getID() == ObjectId.PlayerTank) { //Checks if the id is a player
                 PlayerTank p = (PlayerTank)tempObject;
@@ -54,7 +57,14 @@ public class KeyInput extends KeyAdapter {
 //                     handler.addObject(new Bullet(((float) ((gun.x) + gun.getRadius() * Math.cos(Math.toRadians(gun.getAngle())))), (float)
 //                                (gun.y - gun.getRadius() * Math.sin(Math.toRadians(gun.getAngle()))), ObjectId.Bullet, (float) (20 * Math.cos(Math.toRadians(gun.getAngle()))), gun, handler));
                             //handler.addObject(gun.getBullets().pop());
+//                        long t = System.currentTimeMillis();
+//                        long temp = timeLastFired - t;
+//                        if(t-timeLastFired> 1000){
+//                            gun.fire(handler);
+//                            timeLastFired = t;
+//                        }
                         gun.fire(handler);
+
                     }
                 }
 

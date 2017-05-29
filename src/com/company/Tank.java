@@ -93,7 +93,8 @@ public class Tank extends GameObject
         this.health = health;
     }
     public void collision(){
-        for(GameObject a : h.object){
+        for(int i = 0; i < h.object.size(); i++){
+            GameObject a = h.object.get(i);
             if(a.getID() == ObjectId.Platform){
                 Platform block = (Platform)a;
                 if(getBoundsLeft().intersects(block.getBounds())){
@@ -120,7 +121,7 @@ public class Tank extends GameObject
                 PowerUp p = (PowerUp)a;
                 if(getBoundsRight().intersects(p.getBounds())){
                     p.setRemove(true);
-                    for(int i = 0; i < 10; i++)
+                    for(int j = 0; j < 10; j++)
                         getGun().getBullets().push(new Bullet(ObjectId.Bullet));
 
                 }
