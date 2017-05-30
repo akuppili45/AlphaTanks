@@ -74,31 +74,54 @@ public class EnemyTank extends Tank {
         float playerY = tank.getY();
         float enemyX = this.x;
         float enemyY = this.y;
-        if(!tank.rightCrashed) {
-            if (playerRightX < enemyX)
-                this.setVelX(-3);
-            else
-                this.setVelX(3);
-        }
-        float dx = Math.abs(playerX - enemyX);
-        if(Math.abs(playerX - enemyX) < 686 && Math.abs(playerX - enemyX) > 656 && getVelX() < 0){
-            this.setVelX(0);
-            float angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2));
-            gun.setAngle(160);
+        float dx = Math.abs(enemyX - playerX);
+
+        if(dx < 525 && dx > 515){
+        	this.setVelX(0);
+            //float angle = (float)(180 - (Math.toDegrees(Math.asin(gravity * dx/(velocity*velocity)))/2)); //dont need - changed to shoot at a certain distance
+            gun.setAngle(165);
             //gun.fire(h);
-//            try {
-//                Thread.sleep(50);
-//                gun.enemyGunFire(h);
-//                //Thread.sleep(50);
-//            }
-//            catch (Exception e){
+//          try {
+//          Thread.sleep(50);
+//          gun.enemyGunFire(h);
+//          //Thread.sleep(50);
+//          }
+//          catch (Exception e){
 //
-//            }
-            gun.enemyGunFire(h);
-
+//          }
+                gun.enemyGunFire(h);
+        	}
+        else if (dx < 500){
+        	this.setVelX(3);
+        	}
+        else if (dx > 600){
+        	this.setVelX(-3);
+        	}
 
         }
 
-
+    public void platformEnemyAction(PlayerTank tank){
+        float playerRightX = (float) tank.getBoundsRight().getX();
+        float playerX = tank.getX();
+        float playerY = tank.getY();
+        float enemyX = this.x;
+        float enemyY = this.y;
+        float dx = enemyX - playerX;
+        //System.out.println(enemyX - playerX);
+      
+        if(dx < 550 && dx > 200)//aggro distance
+        {
+        	float angle = (float) ((float) -(((Math.pow(Math.abs(dx)-500, 2)))/8500)+102);
+        	gun.setAngle(angle);
+        	gun.enemyGunFire(h);
+        }
+        
+        else if(dx < -225 && dx > -350)
+        {
+        	float angle = (float) -(((Math.pow(Math.abs(dx), 2)))/4000)+110;
+        	gun.setAngle(angle);
+        	gun.enemyGunFire(h);
+        }
+        
     }
 }

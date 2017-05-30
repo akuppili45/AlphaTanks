@@ -25,9 +25,4 @@ public class PlayerTank extends Tank
     public void render(Graphics g) {
         super.render(g);
     }
-
-
-
-
-
 }
