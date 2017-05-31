@@ -16,10 +16,8 @@ public class Tank extends GameObject
     Camera cam;
     Game game;
     boolean rightCrashed = false;
-
-
-
     float gravity = -.3f;
+    
     public Tank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game) {
         super(x, y, id);
         h = handler;
@@ -37,13 +35,11 @@ public class Tank extends GameObject
     }
     @Override
     public void tick(LinkedList<GameObject> object) {
-
         gun.setX(x+30);
         x+=velX;
         collision();
         if(getHealth() == 0)
             h.removeObject(this);
-
     }
 
     @Override
@@ -59,7 +55,6 @@ public class Tank extends GameObject
             gun.render(g);
             Graphics2D g2D = (Graphics2D)g;
             g2D.setStroke(new BasicStroke(0));
-            g2D.setColor(Color.MAGENTA);
             g2D.draw(getBoundsLeft());
             g2D.draw(getBoundsRight());
             //Rectangle rectangle = new Rectangle(900,(int)y,46,34);

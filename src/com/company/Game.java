@@ -38,10 +38,10 @@ public class Game extends Canvas implements Runnable {
         cam = new Camera(0, 0);
         switch (currentLevel) {
             case 1:
-                level = loader.loadImage("/level2.png");
+                level = loader.loadImage("/level1.png");
                 break;
             case 2:
-                level = loader.loadImage("/secondlevel.png");
+                level = loader.loadImage("/2.png");
         }
         //handler.decideLevel();//decide which level
         loadImageLevel(level);//actually loads level
@@ -89,7 +89,7 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
-        EnemyTank e ;
+        EnemyTank e;
         for (int i = 0; i < handler.object.size(); i++) {
         	GameObject a = handler.object.get(i);
             if (a.getID() == ObjectId.PlayerTank){

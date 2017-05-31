@@ -13,7 +13,6 @@ public class Window
         game.setMaximumSize(new Dimension(w,h));
         game.setMinimumSize(new Dimension(w,h));
 
-
         JFrame frame = new JFrame(title);
         frame.add(game);
         frame.pack();
@@ -22,5 +21,6 @@ public class Window
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         game.start();
+        
     }
 }

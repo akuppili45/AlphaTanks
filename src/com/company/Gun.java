@@ -20,8 +20,6 @@ public class Gun extends GameObject
     private int numBullets = 10;
     long timeLastFired = System.currentTimeMillis();
 
-
-
     public Gun(float x, float y, ObjectId id, float gunAngle, Tank tank, Handler handler) {
         super(x, y, id);
         angle = gunAngle;
