@@ -59,7 +59,7 @@ public class Tank extends GameObject
             gun.render(g);
             Graphics2D g2D = (Graphics2D)g;
             g2D.setStroke(new BasicStroke(0));
-            g2D.setColor(Color.MAGENTA);
+            //g2D.setColor(Color.MAGENTA);
             g2D.draw(getBoundsLeft());
             g2D.draw(getBoundsRight());
             //Rectangle rectangle = new Rectangle(900,(int)y,46,34);
