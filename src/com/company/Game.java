@@ -44,6 +44,13 @@ public class Game extends Canvas implements Runnable {
                 break;
             case 2:
                 level = loader.loadImage("/2.png");
+                break;
+            case 3:
+                level = loader.loadImage("/3.png");
+                break;
+            case 4:
+                level = loader.loadImage("/4.png");
+                break;
         }
         //handler.decideLevel();//decide which level
         loadImageLevel(level);//actually loads level

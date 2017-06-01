@@ -112,7 +112,12 @@ public class Tank extends GameObject
                 if(getBoundsRight().intersects(f.getBounds())) {
                     h.clearLevel();
                     cam.setX(0);
-                    game.setCurrentLevel(2);
+                    if(Flag.level == 4)
+                    	Flag.level = 1;
+                    else
+                    Flag.level++;
+                    game.setCurrentLevel(Flag.level);
+                    System.out.println(Flag.level);
                     game.init();
                 }
             }
