@@ -59,7 +59,6 @@ public class Game extends Canvas implements Runnable {
         HEIGHT = getHeight();//Canvas height
 
         this.addKeyListener(new KeyInput(handler));
-        this.addMouseListener(new MouseInput());
 
     }
 
