@@ -15,6 +15,7 @@ public class Bullet extends GameObject {
     private int bulletHeight = 16;
     float initialVelocity = 18;
     Handler handler;
+    
     public void setValues(float x, float y, ObjectId id, float velX, Gun gun, Handler handler ) {
 		//super(x, y, id);
         setX(x);

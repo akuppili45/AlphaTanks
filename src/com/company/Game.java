@@ -12,6 +12,8 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     public static int WIDTH, HEIGHT;
     private int currentLevel = 1;
+    static Window window;
+    public static int health;
 
     //Objects
     Handler handler;
@@ -88,6 +90,8 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        window.update();
+        
         PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
         EnemyTank e ;
         for (int i = 0; i < handler.object.size(); i++) {
@@ -95,6 +99,7 @@ public class Game extends Canvas implements Runnable {
             if (a.getID() == ObjectId.PlayerTank){
                 p = (PlayerTank)a;
                 cam.tick(a);
+                health = p.getHealth();
                 //System.out.println(a.getX());
             }
             else if(a.getID() == ObjectId.EnemyTank){
@@ -176,6 +181,6 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(String[] args) {
         //new Window(800,600,"Alpha Tanks", new Game());
-        new Window(1800, 900, "Alpha Tanks", new Game());
+        window = new Window(1800, 900, "Alpha Tanks", new Game());
     }
 }
