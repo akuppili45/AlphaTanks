@@ -155,7 +155,7 @@ public class Game extends Canvas implements Runnable {
         int xx;
         int yy;
         PlayerTank pT;
-        System.out.println("width, height" + w + "," + h);
+       //System.out.println("width, height" + w + "," + h);
         for (xx = 0; xx < h; xx++) {
             for (yy = 0; yy < w; yy++) {
 

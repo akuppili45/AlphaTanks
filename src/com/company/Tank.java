@@ -117,7 +117,6 @@ public class Tank extends GameObject
                     else
                     Flag.level++;
                     game.setCurrentLevel(Flag.level);
-                    System.out.println(Flag.level);
                     game.init();
                 }
             }
