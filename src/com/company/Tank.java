@@ -18,7 +18,6 @@ public class Tank extends GameObject
     boolean rightCrashed = false;
 
 
-
     float gravity = -.3f;
     public Tank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game) {
         super(x, y, id);
