@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
+ * Tests for all methods in project.
  * 
  * @author Erik Ren, Aditya Kuppili, Chris Kim
  * @version 5/31/17

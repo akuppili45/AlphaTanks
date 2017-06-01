@@ -6,18 +6,28 @@ import java.io.IOException;
 import java.nio.Buffer;
 
 /**
- * Created by akupp_000 on 5/19/2017.
+ * Loads the image for processing
+ * 
+ * @author Erik Ren, Aditya Kuppili, Chris Kim
+ * @version 5/31/17
+ *
  */
-public class BufferedImageLoader
-{
-    private BufferedImage image;
-    public BufferedImage loadImage(String path){
-        try {
-            image = ImageIO.read(getClass().getResource(path));
-        }
-        catch (IOException e){
+public class BufferedImageLoader {
+	private BufferedImage image;
 
-        }
-        return image;
-    }
+	/**
+	 * loads the image of the level
+	 * 
+	 * @param path
+	 *            of the image
+	 * @return returns the image given by the path
+	 */
+	public BufferedImage loadImage(String path) {
+		try {
+			image = ImageIO.read(getClass().getResource(path));
+		} catch (IOException e) {
+
+		}
+		return image;
+	}
 }

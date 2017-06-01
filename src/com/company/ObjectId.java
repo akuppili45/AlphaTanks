@@ -1,7 +1,11 @@
 package com.company;
 
 /**
- * Created by akupp_000 on 5/7/2017.
+ * Object IDs
+ * 
+ * @author Erik Ren, Aditya Kuppili, Chris Kim
+ * @version 5/31/17
+ *
  */
 public enum ObjectId
 {
