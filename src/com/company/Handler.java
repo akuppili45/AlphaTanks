@@ -72,12 +72,18 @@ public class Handler
     public void decideLevel(){
         BufferedImageLoader loader = new BufferedImageLoader();
              switch (currentLevel){
-                case 1:
-                    level = loader.loadImage("/level2.png");
-                    break;
-                case 2:
-                    level = loader.loadImage("/secondlevel.png");
-                    break;
+             case 1:
+                 level = loader.loadImage("/level1.png");
+                 break;
+             case 2:
+                 level = loader.loadImage("/2.png");
+                 break;
+             case 3:
+                 level = loader.loadImage("/3.png");
+                 break;
+             case 4:
+                 level = loader.loadImage("/4.png");
+                 break;
             }
     }
     

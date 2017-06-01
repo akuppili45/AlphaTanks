@@ -12,6 +12,7 @@ public class Flag extends GameObject
     private Gun gun;
     int bulletWidth = 16;
     int bulletHeight = 16;
+    public static int level = 1;
 
     Handler handler;
 

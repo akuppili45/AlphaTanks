@@ -44,6 +44,13 @@ public class Game extends Canvas implements Runnable {
                 break;
             case 2:
                 level = loader.loadImage("/2.png");
+                break;
+            case 3:
+                level = loader.loadImage("/3.png");
+                break;
+            case 4:
+                level = loader.loadImage("/4.png");
+                break;
         }
         //handler.decideLevel();//decide which level
         loadImageLevel(level);//actually loads level
@@ -148,7 +155,7 @@ public class Game extends Canvas implements Runnable {
         int xx;
         int yy;
         PlayerTank pT;
-        System.out.println("width, height" + w + "," + h);
+       //System.out.println("width, height" + w + "," + h);
         for (xx = 0; xx < h; xx++) {
             for (yy = 0; yy < w; yy++) {
 
