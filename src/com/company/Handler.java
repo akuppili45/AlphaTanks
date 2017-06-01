@@ -48,7 +48,7 @@ public class Handler
     		if(count == 2)
     		{
             JFrame frame = new JFrame("Game Over");
-            JLabel label = new JLabel("Score: " + Handler.score, SwingConstants.CENTER);
+            JLabel label = new JLabel("Kills: " + score/2, SwingConstants.CENTER);
             JLabel label2 = new JLabel("Press ESC to exit...", SwingConstants.CENTER);
             label.setPreferredSize(new Dimension(300, 100));
             label2.setPreferredSize(new Dimension(300,100));
@@ -79,7 +79,6 @@ public class Handler
                     level = loader.loadImage("/secondlevel.png");
                     break;
             }
-
     }
-
+    
 }

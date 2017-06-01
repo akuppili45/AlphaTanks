@@ -9,7 +9,7 @@ import java.util.Stack;
  * Created by akupp_000 on 5/3/2017.
  */
 public class PlayerTank extends Tank
-{
+{	
     public PlayerTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
         super(x,y,id, handler,cam, game);
     }
