@@ -6,40 +6,77 @@ import java.awt.*;
 import java.util.LinkedList;
 
 /**
- * Created by akupp_000 on 5/21/2017.
+ * Creates and manages the power up.
+ * 
+ * @author Erik Ren, Aditya Kuppili, Chris Kim
+ * @version 5/31/17
+ *
  */
-public class PowerUp extends GameObject
-{
-    boolean remove = false;
-    Handler handler;
+public class PowerUp extends GameObject {
+	boolean remove = false;
+	Handler handler;
 
-    public void setRemove(boolean remove) {
-        this.remove = remove;
-    }
+	/**
+	 * to be removed
+	 * 
+	 * @param remove
+	 *            to remove or not
+	 */
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
 
-    public PowerUp(float x, float y, ObjectId id, Handler handler) {
-        super(x, y, id);
-        this.handler = handler;
+	/**
+	 * constructor
+	 * 
+	 * @param x
+	 *            position
+	 * @param y
+	 *            position
+	 * @param id
+	 *            object id
+	 * @param handler
+	 *            the handler
+	 */
+	public PowerUp(float x, float y, ObjectId id, Handler handler) {
+		super(x, y, id);
+		this.handler = handler;
 
-    }
-    @Override
-    public void tick(LinkedList<GameObject> object) {
-            if(remove)
-                handler.removeObject(this);
-    }
+	}
 
-    @Override
-    public void render(Graphics g) {
-        g.setColor(Color.GREEN);
-        g.fillRect((int)x, (int)y, 32,32);
+	@Override
+	/**
+	 * updates
+	 */
+	public void tick(LinkedList<GameObject> object) {
+		if (remove)
+			handler.removeObject(this);
+	}
 
-    }
+	@Override
+	/**
+	 * draws
+	 */
+	public void render(Graphics g) {
+		g.setColor(Color.GREEN);
+		g.fillRect((int) x, (int) y, 32, 32);
 
-    @Override
-    public String toString() {
-        return null;
-    }
-    public Rectangle getBounds(){
-       return new Rectangle((int)x, (int)y, 4,4);
-    }
+	}
+
+	@Override
+	/**
+	 * name returns null
+	 */
+	public String toString() {
+		return null;
+	}
+
+	/**
+	 * gets bounds
+	 * 
+	 * @return Rectangle the bounds
+	 */
+	public Rectangle getBounds() {
+		return new Rectangle((int) x, (int) y, 4, 4);
+	}
 }

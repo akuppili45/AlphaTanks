@@ -4,22 +4,42 @@ import java.awt.*;
 import java.util.LinkedList;
 
 /**
- * Created by akupp_000 on 5/8/2017.
+ * The enemy tank that will fight the player.
+ * 
+ * @author Erik Ren, Aditya Kuppili, Chris Kim
+ * @version 5/31/17
+ *
  */
 public class EnemyTank extends Tank {
     //PlayerTank tankData;
     float gravity = -.3f;
     float velocity = getGun().getBullets().peek().initialVelocity;
     // (Math.asin(gravity * dx/(velocity*velocity)))/2
+    /**
+     * Constructor
+     * @param x position
+     * @param y position
+     * @param id object id
+     * @param handler game handler
+     * @param cam camera
+     * @param game the game
+     */
     public EnemyTank(float x, float y, ObjectId id, Handler handler, Camera cam, Game game){
         super(x,y,id, handler, cam, game);
         this.setHealth(1);
         //tankData = tank;
     }
+    /**
+     * Constructor
+     * @param ObjectId id the id
+     */
     public EnemyTank(ObjectId id){
         super(id);
     }
     @Override
+/**
+ * updates
+ */
     public void tick(LinkedList<GameObject> object) {
         if(getHealth() == 0) {
             h.removeObject(this);
@@ -34,6 +54,9 @@ public class EnemyTank extends Tank {
     }
 
     @Override
+    /**
+     * renders
+     */
     public void render(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, width, height);
@@ -45,6 +68,9 @@ public class EnemyTank extends Tank {
         g2D.draw(getBoundsRight());
         //g2D.draw(getBounds());
     }
+    /**
+     * aims
+     */
     public void aim(){
         //Get PlayerTank position
         float playerX = 0;
@@ -65,9 +91,16 @@ public class EnemyTank extends Tank {
              fire();
         }
     }
+    /**
+     * fires
+     */
     public void fire(){
         getGun().fire(h);
     }
+    /**
+     * ai
+     * @param tank playertank
+     */
     public void horizontalEnemyAction(PlayerTank tank){
         float playerRightX = (float) tank.getBoundsRight().getX();
         float playerX = tank.getX();
@@ -99,7 +132,10 @@ public class EnemyTank extends Tank {
         	}
 
         }
-
+/**
+ * ai
+ * @param tank the playertank
+ */
     public void platformEnemyAction(PlayerTank tank){
         float playerRightX = (float) tank.getBoundsRight().getX();
         float playerX = tank.getX();

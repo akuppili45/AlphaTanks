@@ -5,188 +5,230 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 /**
- * Created by akupp_000 on 5/5/2017.
+ * The main game runner, creates the game and manages game status.
+ * 
+ * @author Erik Ren, Aditya Kuppili, Chris Kim
+ * @version 5/31/17
+ *
  */
 public class Game extends Canvas implements Runnable {
-    private static final long serialVersionUID = -6261436164361361187L;
-    private boolean running = false;
-    public static int WIDTH, HEIGHT;
-    private int currentLevel = 1;
-    static Window window;
-    public static int health;
+	private static final long serialVersionUID = -6261436164361361187L;
+	private boolean running = false;
+	public static int WIDTH, HEIGHT;
+	private int currentLevel = 1;
+	static Window window;
+	public static int health;
 
-    //Objects
-    Handler handler;
-    Camera cam;
+	// Objects
+	Handler handler;
+	Camera cam;
 
-    public synchronized void start() {
-        if (running)
-            return;
-        running = true;
-        Thread thread = new Thread(this);
-        thread.start();
-    }
+	/**
+	 * start
+	 */
+	public synchronized void start() {
+		if (running)
+			return;
+		running = true;
+		Thread thread = new Thread(this);
+		thread.start();
+	}
 
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
+	/**
+	 * current level
+	 * 
+	 * @return int level
+	 */
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
 
-    public void init() {
+	/**
+	 * initialize
+	 */
+	public void init() {
 
-        BufferedImageLoader loader = new BufferedImageLoader();
+		BufferedImageLoader loader = new BufferedImageLoader();
 
-        BufferedImage level = null;
-        handler = new Handler();
-        cam = new Camera(0, 0);
-        switch (currentLevel) {
-            case 1:
-                level = loader.loadImage("/level1.png");
-                break;
-            case 2:
-                level = loader.loadImage("/2.png");
-                break;
-            case 3:
-                level = loader.loadImage("/3.png");
-                break;
-            case 4:
-                level = loader.loadImage("/4.png");
-                break;
-        }
-        //handler.decideLevel();//decide which level
-        loadImageLevel(level);//actually loads level
+		BufferedImage level = null;
+		handler = new Handler();
+		cam = new Camera(0, 0);
+		switch (currentLevel) {
+		case 1:
+			level = loader.loadImage("/level1.png");
+			break;
+		case 2:
+			level = loader.loadImage("/2.png");
+			break;
+		case 3:
+			level = loader.loadImage("/3.png");
+			break;
+		case 4:
+			level = loader.loadImage("/4.png");
+			break;
+		}
+		// handler.decideLevel();//decide which level
+		loadImageLevel(level);// actually loads level
 
-        WIDTH = getWidth();//Canvas width
-        HEIGHT = getHeight();//Canvas height
+		WIDTH = getWidth();// Canvas width
+		HEIGHT = getHeight();// Canvas height
 
-        this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(handler));
 
-    }
+	}
 
-    @Override
-    public void run() {
-        init();
-        this.requestFocus();
-        long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        long timer = System.currentTimeMillis();
-        int updates = 0;
-        int frames = 0;
-        while (running) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while (delta >= 1) {
-                tick();
-                updates++;
-                delta--;
-            }
-            render();
-            frames++;
+	@Override
+	/**
+	 * runs
+	 */
+	public void run() {
+		init();
+		this.requestFocus();
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int updates = 0;
+		int frames = 0;
+		while (running) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta >= 1) {
+				tick();
+				updates++;
+				delta--;
+			}
+			render();
+			frames++;
 
-            if (System.currentTimeMillis() - timer > 1000) {
-                timer += 1000;
-                //System.out.println("FPS: " + frames + " TICKS: " + updates);
-                frames = 0;
-                updates = 0;
-            }
-        }
-    }
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				// System.out.println("FPS: " + frames + " TICKS: " + updates);
+				frames = 0;
+				updates = 0;
+			}
+		}
+	}
 
-    private void tick() {
-        handler.tick();
-        window.update();
-        
-        PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
-        EnemyTank e ;
-        for (int i = 0; i < handler.object.size(); i++) {
-        	GameObject a = handler.object.get(i);
-            if (a.getID() == ObjectId.PlayerTank){
-                p = (PlayerTank)a;
-                cam.tick(a);
-                health = p.getHealth();
-                //System.out.println(a.getX());
-            }
-            else if(a.getID() == ObjectId.EnemyTank){
-                e = (EnemyTank)a;
-                //x = screenwidth - tankwidth
-                // if(e.getX() > 1800 - e.width && e.getY() == p.getY())
-                if( e.getY() == p.getY()) {
-//                    System.out.println("Player: " + p.x);
-//                    System.out.println("Enemy: " + e.x);
-                    e.horizontalEnemyAction(p);
-                }
-                else{
-                	e.platformEnemyAction(p);
-                }
-                //System.out.println(e.getX());
+	/**
+	 * updates
+	 */
+	private void tick() {
+		handler.tick();
+		window.update();
 
-            }
+		PlayerTank p = new PlayerTank(ObjectId.PlayerTank);
+		EnemyTank e;
+		for (int i = 0; i < handler.object.size(); i++) {
+			GameObject a = handler.object.get(i);
+			if (a.getID() == ObjectId.PlayerTank) {
+				p = (PlayerTank) a;
+				cam.tick(a);
+				health = p.getHealth();
+				// System.out.println(a.getX());
+			} else if (a.getID() == ObjectId.EnemyTank) {
+				e = (EnemyTank) a;
+				// x = screenwidth - tankwidth
+				// if(e.getX() > 1800 - e.width && e.getY() == p.getY())
+				if (e.getY() == p.getY()) {
+					// System.out.println("Player: " + p.x);
+					// System.out.println("Enemy: " + e.x);
+					e.horizontalEnemyAction(p);
+				} else {
+					e.platformEnemyAction(p);
+				}
+				// System.out.println(e.getX());
 
-        }
-    }
+			}
 
-    //Called in the game loop in this class.
-    private void render() {
-        BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null) {
-            this.createBufferStrategy(3);
-            return;
-        }
-        Graphics g = bs.getDrawGraphics();
-        Graphics2D g2D = (Graphics2D) g;
-        /////////////////////////////////
-        //Draw Everything in here
-        //g.setColor(Color.GRAY);
-        g.fillRect(0, 0, getWidth(), getHeight());//This NEEDS to be here. DON'T TAKE IT OUT OR THE PLAYER WON'T MOVE
-        g2D.translate(cam.getX(), cam.getY());
-        handler.render(g);
-        g2D.translate(-cam.getX(), -cam.getY());
-        /////////////////////
-        g.dispose();
-        bs.show();
-    }
+		}
+	}
 
-    private void loadImageLevel(BufferedImage image) {
-        int w = image.getWidth();
-        int h = image.getHeight();
-        int xx;
-        int yy;
-        PlayerTank pT;
-       //System.out.println("width, height" + w + "," + h);
-        for (xx = 0; xx < h; xx++) {
-            for (yy = 0; yy < w; yy++) {
+	// Called in the game loop in this class.
+	/**
+	 * draws
+	 */
+	private void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		Graphics2D g2D = (Graphics2D) g;
+		/////////////////////////////////
+		// Draw Everything in here
+		// g.setColor(Color.GRAY);
+		g.fillRect(0, 0, getWidth(), getHeight());// This NEEDS to be here.
+													// DON'T TAKE IT OUT OR THE
+													// PLAYER WON'T MOVE
+		g2D.translate(cam.getX(), cam.getY());
+		handler.render(g);
+		g2D.translate(-cam.getX(), -cam.getY());
+		/////////////////////
+		g.dispose();
+		bs.show();
+	}
 
-                int pixel = image.getRGB(xx, yy);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
-                if (red == 255 && green == 255 && blue == 255)
-                    handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
-                if (red == 0 && green == 0 && blue == 255) {
-                    pT = new PlayerTank(xx * 32, yy * 32, ObjectId.PlayerTank, handler, cam, this);
-                    handler.addObject(pT);
-                }
-                if (red == 255 && green == 0 && blue == 0) {
-                    handler.addObject(new EnemyTank(xx * 32, yy * 32, ObjectId.EnemyTank, handler, cam, this));
-                    //System.out.println(xx);
-                }
-                if (red == 255 && green == 216 && blue == 0) {
-                    handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
-                }
-                if (red == 0 && green == 255 && blue == 33)
-                    handler.addObject(new PowerUp(xx * 32, yy * 32, ObjectId.PowerUp, handler));
-            }
-        }
-    }
+	/**
+	 * loads level
+	 * 
+	 * @param image
+	 *            level
+	 */
+	private void loadImageLevel(BufferedImage image) {
+		int w = image.getWidth();
+		int h = image.getHeight();
+		int xx;
+		int yy;
+		PlayerTank pT;
+		// System.out.println("width, height" + w + "," + h);
+		for (xx = 0; xx < h; xx++) {
+			for (yy = 0; yy < w; yy++) {
 
-    public void setCurrentLevel(int level) {
-        currentLevel = level;
-    }
+				int pixel = image.getRGB(xx, yy);
+				int red = (pixel >> 16) & 0xff;
+				int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
+				if (red == 255 && green == 255 && blue == 255)
+					handler.addObject(new Platform(xx * 32, yy * 32, ObjectId.Platform, this));
+				if (red == 0 && green == 0 && blue == 255) {
+					pT = new PlayerTank(xx * 32, yy * 32, ObjectId.PlayerTank, handler, cam, this);
+					handler.addObject(pT);
+				}
+				if (red == 255 && green == 0 && blue == 0) {
+					handler.addObject(new EnemyTank(xx * 32, yy * 32, ObjectId.EnemyTank, handler, cam, this));
+					// System.out.println(xx);
+				}
+				if (red == 255 && green == 216 && blue == 0) {
+					handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
+				}
+				if (red == 0 && green == 255 && blue == 33)
+					handler.addObject(new PowerUp(xx * 32, yy * 32, ObjectId.PowerUp, handler));
+			}
+		}
+	}
 
-    public static void main(String[] args) {
-        //new Window(800,600,"Alpha Tanks", new Game());
-        window = new Window(1800, 900, "Alpha Tanks", new Game());
-    }
+	/**
+	 * set level
+	 * 
+	 * @param level
+	 *            the level
+	 */
+	public void setCurrentLevel(int level) {
+		currentLevel = level;
+	}
+
+	/**
+	 * the window
+	 * 
+	 * @param args
+	 *            makes window
+	 */
+	public static void main(String[] args) {
+		// new Window(800,600,"Alpha Tanks", new Game());
+		window = new Window(1800, 900, "Alpha Tanks", new Game());
+	}
 }
