@@ -91,7 +91,7 @@ public class Gun extends GameObject
     public void enemyGunFire(Handler h){
         long t = System.currentTimeMillis();
         long temp = t-timeLastFired;
-        if(enemyBullets.size() != 0 && (t-timeLastFired) > 5000) {
+        if(enemyBullets.size() != 0 && (t-timeLastFired) > 1000) {
             Bullet b = enemyBullets.pop();
             b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
                     (y  - getRadius() * Math.sin(Math.toRadians(getAngle()))), ObjectId.Bullet, (float) (b.initialVelocity * Math.cos(Math.toRadians(getAngle()))), this, h);
