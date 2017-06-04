@@ -70,11 +70,8 @@ public class Gun extends GameObject
     public boolean isPlayerTank(){
         return tankID.isPlayer();
     }
-
-    //For PlayerTank only. Make another method similar to this one but applies only to EnemyTank.
     public void fire(Handler h){
         long t = System.currentTimeMillis();
-        long temp = t-timeLastFired;
         if(bullets.size() != 0 && (t-timeLastFired) > 1000) {
             Bullet b = bullets.pop();
             b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
@@ -82,15 +79,13 @@ public class Gun extends GameObject
 
             h.addObject(b);
             timeLastFired = t;
-           // System.out.println(b.getX());
+
         }
 
 
     }
-    //use a linked list of bullets instead of a stack. Get the first one to fire, and for the second, getPrevious and see where that is and then fire.
     public void enemyGunFire(Handler h){
         long t = System.currentTimeMillis();
-        long temp = t-timeLastFired;
         if(enemyBullets.size() != 0 && (t-timeLastFired) > 1000) {
             Bullet b = enemyBullets.pop();
             b.setValues(((float) ((x) + getRadius() * Math.cos(Math.toRadians(getAngle())))), (float)
